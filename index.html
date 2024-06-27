@@ -17,16 +17,64 @@
             <h1 class="main-header__title">Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses</h1>
             <form class="main-header__search-bar">
                 <label for="recipe-search" class="sr-only">Search a recipe</label>
-                <input type="search" class="main-header__search-input" id="recipe-search" name="recipe-query" placeholder="Rechercher une recette, un ingrédient, ...">
+                <input type="text" class="main-header__search-input" id="recipe-search" name="recipe-query" placeholder="Rechercher une recette, un ingrédient, ...">
                 <img class="main-header__close-search" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
                 <input type="image" class="main-header__search-button" alt="search" src="assets/images/magnifier-white.png">
             </form>
         </header>
         <main>
+            <section class="filters">
+                <h2 class="filters__main-title" id="recipes_amount">1500 recettes</h2>
+                <ul class="filters__list">
+                    <li class="filters__item">
+                        <div class="filters__header">
+                            <h3 class="filters__title">Ingrédients</h3>
+                            <img class="filters__open" src="assets/images/open.png" alt="open filter">
+                        </div>
+                        <div class="filters__dropdown">
+                            <div class="filters__search">
+                                <input class="filters__search__input" type="text">
+                                <img class="filters__close-search" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
+                                <img class="filters__search__icon" src="assets/images/magnifier-grey.png" alt="search ingredient">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="filters__item">
+                        <div class="filters__header">
+                            <h3 class="filters__title">Appareils</h3>
+                            <img class="filters__open" src="assets/images/open.png" alt="open filter">
+                        </div>
+                        <div class="filters__dropdown">
+                            <div class="filters__search">
+                                <input class="filters__search__input" type="text">
+                                <img class="filters__close-search" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
+                                <img class="filters__search__icon" src="assets/images/magnifier-grey.png" alt="search ingredient">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="filters__item">
+                        <div class="filters__header">
+                            <h3 class="filters__title">Ustensiles</h3>
+                            <img class="filters__open" src="assets/images/open.png" alt="open filter">
+                        </div>
+                        <div class="filters__dropdown">
+                            <div class="filters__search">
+                                <input class="filters__search__input" type="text">
+                                <img class="filters__close-search" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
+                                <img class="filters__search__icon" src="assets/images/magnifier-grey.png" alt="search ingredient">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+
+            </section>
         </main>
     </div>
-    <!-- Data -->
-    <script src="scripts/data/recipes.js"></script>
+    <!-- Datas -->
+    <script src="data/recipes.js"></script>
+    <!-- Models -->
+    <script src="scripts/models/recipeData.js"></script>
     <!-- Templates -->
     <script src="scripts/templates/recipeCard.js"></script>
     <!-- Utils -->

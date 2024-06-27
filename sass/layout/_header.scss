@@ -25,11 +25,12 @@
         height: 72px;
         margin: 0 auto;
         background-color: white;
-        border-radius: 10px;
+        border-radius: 11px;
         padding: 10px;
         margin-top: rem(30);
         display: flex;
         justify-content: space-between;
+        align-items: center;
         position: relative;
     }
 
@@ -37,7 +38,6 @@
         font-size: rem(16);
         color: $grey;
         padding: 25px;
-        margin-right: 10px ;
         border: none;
         flex-grow: 1;
         cursor: pointer;
@@ -46,10 +46,7 @@
     &__close-search {
         width: 13px;
         height: 13px;
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translate(-80px, -50%);
+        margin-right: rem(17);
         cursor: pointer;
         display: none;
     }

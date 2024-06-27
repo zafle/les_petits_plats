@@ -1,5 +1,6 @@
-class Recipes {
+class RecipesPage {
     constructor() {
+        this._recipes = recipes;
 
     }
 
@@ -16,8 +17,9 @@ class Recipes {
 }
 
 function init() {
-    const recipes = new Recipes()
-    recipes.run()
+    const recipesPage = new RecipesPage()
+    recipesPage.run()
+    console.log(recipes)
 
 }
 
