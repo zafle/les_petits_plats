@@ -13,6 +13,14 @@
 <body>
     <div class="main-container">
         <header class="main-header">
+            <img src="assets/images/logo.png" alt="Les petits plats" class="main-header__logo">
+            <h1 class="main-header__title">Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses</h1>
+            <form class="main-header__search-bar">
+                <label for="recipe-search" class="sr-only">Search a recipe</label>
+                <input type="search" class="main-header__search-input" id="recipe-search" name="recipe-query" placeholder="Rechercher une recette, un ingrédient, ...">
+                <img class="main-header__close-search" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
+                <input type="image" class="main-header__search-button" alt="search" src="assets/images/magnifier-white.png">
+            </form>
         </header>
         <main>
         </main>
@@ -21,6 +29,8 @@
     <script src="scripts/data/recipes.js"></script>
     <!-- Templates -->
     <script src="scripts/templates/recipeCard.js"></script>
+    <!-- Utils -->
+    <script src="scripts/utils/searchBar.js"></script>
     <!-- Pages -->
     <script src="scripts/pages/index.js"></script>
 </body>

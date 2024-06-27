@@ -1,8 +1,20 @@
 // ####### COLORS #######
+$yellow: #FFD15B;
+$black: #1B1B1B;
+$grey: #7A7A7A;
+$light-grey: #C6C6C6;
 
 // ####### TYPOGRAPHIE #######
-$title-font: "Manrope", sans-serif;
-$main-font: "Anton", sans-serif;
+$base-font-size: 16px;
+$tablet-font-size: 14px;
+$mobile-font-size: 12px;
+$title-font: "Anton", sans-serif;
+$main-font: "Manrope", sans-serif;
 $regular: 400;
 $medium: 500;
 $bold: 700;
+
+// responsive font-size
+@media screen and (max-width: 768px) {
+    $base-font-size: 14px;
+}

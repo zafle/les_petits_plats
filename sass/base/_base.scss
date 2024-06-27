@@ -1,12 +1,50 @@
 // ####### TYPOGRAPHIE #######
 
+html, body {
+    @media screen and (min-width: 1025px) {
+        font-size: $base-font-size;
+    }
+    @media screen and (min-width: 769px) {
+        font-size: $tablet-font-size;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: $mobile-font-size;
+    }
+}
+
+*, button {
+    font-family: $main-font;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: $regular;
+}
+
 h1, h2 {
     font-family: $title-font;
     font-weight: 400;
     font-style: normal;
 }
-h3, p, span, li, a, button {
-    font-family: $main-font;
-    font-optical-sizing: auto;
-    font-style: normal;
+
+// ####### ACCESSIBILITY #######
+
+.sr-only {
+    border: 0;
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+}
+
+// ####### GENERAL #######
+
+.main-container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+main {
+    background-color: $light-grey;
 }
