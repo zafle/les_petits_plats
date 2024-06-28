@@ -1,27 +1,30 @@
 // ####### FILTERS #######
 
 .filters {
-    display: flex;
-    justify-content: space-between;
-    padding: rem(20) 0;
+    height: 56px;
+    position: relative;
 
     &__main-title {
-        order: 1;
         color: $black;
         font-size: rem(21);
+        margin-top: 17px;
+        float: right;
     }
 
     &__list {
-        order: 0;
         display: flex;
         justify-content: space-between;
-        column-gap: rem(64);
+        column-gap: 64px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
     }
 
     &__item {
-        // overflow: hidden;
+        overflow: hidden;
+        height: 56px;
         width: 195px;
-        // height: rem(56);
         background-color: white;
         border-radius: 11px;
         padding: 0 16px;

@@ -1,15 +1,7 @@
 // ####### TYPOGRAPHIE #######
 
 html, body {
-    @media screen and (max-width: 768px) {
-        font-size: $mobile-font-size;
-    }
-    @media screen and (min-width: 769px) {
-        font-size: $tablet-font-size;
-    }
-    @media screen and (min-width: 1025px) {
         font-size: $base-font-size;
-    }
 }
 
 *, button {
