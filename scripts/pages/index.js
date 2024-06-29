@@ -1,20 +1,13 @@
 class RecipesPage {
+    /** Display homepage
+     *
+     */
     constructor() {
-        this._recipes = recipes;
+        this._recipesDatas = [];
 
         this.$recipeSection = document.querySelector(".recipes")
-    }
 
-    mapRecipes() {
-        this._recipes = this._recipes.map(recipe => new RecipeData(recipe))
-    }
-
-    displayRecipes() {
-        this.mapRecipes()
-        this._recipes.forEach(recipe => {
-            const Template = new RecipeCard(recipe)
-            this.$recipeSection.append(Template.createRecipeCard())
-        })
+        this._tagsDatas = new TagsDatas()
     }
 
     launchSearchBar() {
@@ -22,18 +15,61 @@ class RecipesPage {
         searchBar.run()
     }
 
-    run() {
-        this.displayRecipes()
-        this.launchSearchBar()
+    mapRecipes() {
+        this._recipesDatas = recipes.map(recipe => new RecipeData(recipe))
     }
 
+    displayRecipeCard(recipe) {
+        const Template = new RecipeCard(recipe)
+        this.$recipeSection.append(Template.createRecipeCard())
+    }
 
+    logTags(recipe) {
+        // log tags in tags arrays from TagsData object
+
+        // ingredients tags
+        recipe.ingredientsTags.forEach(ingredient => {
+            this._tagsDatas.ingredientsTags = ingredient
+        })
+
+        // ustensils tags
+        recipe.ustensilsTags.forEach(ustensil => {
+            this._tagsDatas.ustensilsTags = ustensil
+        })
+
+        // appliance tagt
+        this._tagsDatas.appliancesTags = recipe.applianceTag
+    }
+
+    displayFiltersTags() {
+        const filtersTags = new FiltersTags(this._tagsDatas.ingredientsTags, this._tagsDatas.appliancesTags, this._tagsDatas.ustensilsTags)
+        filtersTags.displayTags()
+    }
+
+    displayContent() {
+        // map recipes datas
+        this.mapRecipes()
+
+        this._recipesDatas.forEach(recipe => {
+            // display recipes cards
+            this.displayRecipeCard(recipe)
+            // log filters tags
+            this.logTags(recipe)
+        })
+        console.log(this._tagsDatas)
+        // display filters tags
+        this.displayFiltersTags()
+    }
+
+    run() {
+        this.launchSearchBar()
+        this.displayContent()
+    }
 }
 
 function init() {
     const recipesPage = new RecipesPage()
     recipesPage.run()
-
 }
 
 init()

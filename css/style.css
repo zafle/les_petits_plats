@@ -157,8 +157,6 @@ h1, h2 {
   z-index: 1;
 }
 .filters__item {
-  overflow: hidden;
-  height: 56px;
   width: 195px;
   background-color: white;
   border-radius: 11px;

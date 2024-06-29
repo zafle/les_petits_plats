@@ -1,9 +1,12 @@
 class RecipeCard {
+    /** Template to display recipe card
+     *
+     * @param {Object} recipe RecipeData
+     *
+     */
     constructor(recipe) {
         this._recipe = recipe
         this._ingredients = recipe.ingredients
-
-
 
         this.$card = document.createElement("article")
     }

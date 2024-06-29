@@ -1,4 +1,8 @@
 class RecipeData {
+    /** Constructor pattern for recipe's datas
+     *
+     * @param {Object} recipe RecipeData
+     */
     constructor(recipe) {
         this._recipe = recipe
         this._id = recipe.id
@@ -10,7 +14,6 @@ class RecipeData {
         this._appliance = recipe.appliance
         this._ingredients = recipe.ingredients
         this._ustensils = recipe.ustensils
-
     }
 
     get id() {
@@ -33,11 +36,19 @@ class RecipeData {
         return this._description
     }
 
-
     get ingredients() {
-        const ingredients = this._ingredients.map(ingredient => new IngredientData(ingredient))
-        this._ingredients = ingredients
+        return this._ingredients.map(ingredient => new IngredientData(ingredient))
+    }
 
-        return this._ingredients
+    get ingredientsTags() {
+        return this._ingredients.map(element => element.ingredient)
+    }
+
+    get applianceTag() {
+        return this._appliance
+    }
+
+    get ustensilsTags() {
+        return this._ustensils
     }
 }
