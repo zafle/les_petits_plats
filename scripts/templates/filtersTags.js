@@ -17,11 +17,14 @@ class FiltersTags {
         this.$ingredientsTags = document.querySelector(".filters__tags--ingredients")
         this.$appliancesTags = document.querySelector(".filters__tags--appliance")
         this.$ustensilsTags = document.querySelector(".filters__tags--ustensils")
+
+        this.$filterButton = document.querySelectorAll(".filters__header")
     }
 
     createTag(tag, $tags) {
         const $tagItem = document.createElement("a")
         $tagItem.setAttribute("href", "#")
+        $tagItem.classList.add("filter__tag")
         $tagItem.innerText = tag
         $tags.append($tagItem)
     }
@@ -40,5 +43,25 @@ class FiltersTags {
         this._ustensils.forEach(ustensil => {
             this.createTag(ustensil, this.$ustensilsTags)
         })
+    }
+
+    openFilter() {
+        this.$filterButton.forEach(button => {
+            button.addEventListener("click", (e) => {
+                e.stopPropagation()
+                e.target.closest(".filters__item").classList.toggle("filter--opened")
+                e.target.nextElementSibling.classList.toggle("filter--opened")
+            })
+        })
+    }
+
+    onClickTag() {
+
+
+    }
+
+    run() {
+        this.displayTags()
+        this.openFilter()
     }
 }

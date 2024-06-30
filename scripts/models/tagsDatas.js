@@ -6,6 +6,10 @@ class TagsDatas {
         this._ingredientsTags = []
         this._appliancesTags = []
         this._ustensilsTags = []
+
+        this._ing = []
+        this._app = []
+        this._ust = []
     }
 
     // getters

@@ -43,7 +43,7 @@ class RecipesPage {
 
     displayFiltersTags() {
         const filtersTags = new FiltersTags(this._tagsDatas.ingredientsTags, this._tagsDatas.appliancesTags, this._tagsDatas.ustensilsTags)
-        filtersTags.displayTags()
+        filtersTags.run()
     }
 
     displayContent() {
@@ -70,6 +70,8 @@ class RecipesPage {
 function init() {
     const recipesPage = new RecipesPage()
     recipesPage.run()
+
+
 }
 
 init()
