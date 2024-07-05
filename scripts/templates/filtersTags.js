@@ -6,12 +6,12 @@ class FiltersTags {
      * @param {Array} ustensils
      *
      */
-    constructor(ingredients, appliances, ustensils) {
+    constructor(tagsDatas) {
 
         // Arrays of tags
-        this._ingredients = ingredients
-        this._appliances = appliances
-        this._ustensils = ustensils
+        this._ingredients = tagsDatas.ingredientsTags
+        this._appliances = tagsDatas.appliancesTags
+        this._ustensils = tagsDatas.ustensilsTags
 
         // filters HTML elements
         this.$ingredientsTags = document.querySelector(".filters__tags--ingredients")

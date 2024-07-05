@@ -2,17 +2,14 @@ class TagsDatas {
     /** Constructor pattern to log tags'datas from all recipes
      *
      */
-    constructor() {
+    constructor(recipes) {
+        this._recipes = recipes
+
         this._ingredientsTags = []
         this._appliancesTags = []
         this._ustensilsTags = []
-
-        this._ing = []
-        this._app = []
-        this._ust = []
     }
 
-    // getters
     get ingredientsTags() {
         return this._ingredientsTags
     }
@@ -25,33 +22,45 @@ class TagsDatas {
         return this._ustensilsTags
     }
 
-    // setters
-    set ingredientsTags(ingredient) {
-        this.checkAndPushTag(ingredient, this._ingredientsTags)
-    }
+    removeDuplicates(array) {
+        const arrayToLowerCase = array.map(tag => tag.toLowerCase())
+        let uniquesToLowerCase = []
+        let uniques = []
 
-    set appliancesTags(appliance) {
-        this.checkAndPushTag(appliance, this._appliancesTags)
-    }
-
-    set ustensilsTags(ustensil) {
-        this.checkAndPushTag(ustensil, this._ustensilsTags)
-    }
-
-    // check if tag already exists before pushing it into array
-    checkAndPushTag(tag, array) {
-        const tagsLength = array.length
-        let tagExists = false
-
-        for (let i = 0; i < tagsLength; i++) {
-            if (array[i].toLowerCase() === tag.toLowerCase()) {
-                tagExists = true
-                break
+        for (let i = 0; i < array.length; i++) {
+            if (!uniquesToLowerCase.includes(arrayToLowerCase[i])) {
+                uniquesToLowerCase.push(arrayToLowerCase[i])
+                uniques.push(array[i])
             }
         }
 
-        if (tagExists === false) {
-            array.push(tag)
-        }
+        return uniques
     }
+
+    createArrays() {
+        this._recipes.forEach(recipe => {
+            recipe.ingredientsTags.forEach(ingredient => {
+                this._ingredientsTags.push(ingredient)
+            })
+
+            this._appliancesTags.push(recipe.applianceTag)
+
+            recipe.ustensilsTags.forEach(ustensil => {
+                this._ustensilsTags.push(ustensil)
+            })
+        })
+    }
+
+    createUniquesTagsArrays() {
+        this._ingredientsTags = this.removeDuplicates(this._ingredientsTags)
+        this._appliancesTags = this.removeDuplicates(this._appliancesTags)
+        this._ustensilsTags = this.removeDuplicates(this._ustensilsTags)
+    }
+
+    createTags() {
+        this.createArrays()
+        this.createUniquesTagsArrays()
+    }
+
+
 }

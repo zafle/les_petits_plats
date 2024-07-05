@@ -7,7 +7,6 @@ class RecipesPage {
 
         this.$recipeSection = document.querySelector(".recipes")
 
-        this._tagsDatas = new TagsDatas()
     }
 
     launchSearchBar() {
@@ -24,25 +23,32 @@ class RecipesPage {
         this.$recipeSection.append(Template.createRecipeCard())
     }
 
-    logTags(recipe) {
-        // log tags in tags arrays from TagsData object
+    // logTags(recipe) {
 
-        // ingredients tags
-        recipe.ingredientsTags.forEach(ingredient => {
-            this._tagsDatas.ingredientsTags = ingredient
-        })
 
-        // ustensils tags
-        recipe.ustensilsTags.forEach(ustensil => {
-            this._tagsDatas.ustensilsTags = ustensil
-        })
+    //     // log tags in tags arrays from TagsData object
 
-        // appliance tagt
-        this._tagsDatas.appliancesTags = recipe.applianceTag
+    //     // ingredients tags
+    //     recipe.ingredientsTags.forEach(ingredient => {
+    //         this._tagsDatas.ingredientsTags = ingredient
+    //     })
+
+    //     // ustensils tags
+    //     recipe.ustensilsTags.forEach(ustensil => {
+    //         this._tagsDatas.ustensilsTags = ustensil
+    //     })
+
+    //     // appliance tagt
+    //     this._tagsDatas.appliancesTags = recipe.applianceTag
+    // }
+    createFiltersTags() {
+        this._tagsDatas = new TagsDatas(this._recipesDatas)
+        this._tagsDatas.createTags()
     }
 
     displayFiltersTags() {
-        const filtersTags = new FiltersTags(this._tagsDatas.ingredientsTags, this._tagsDatas.appliancesTags, this._tagsDatas.ustensilsTags)
+        this.createFiltersTags()
+        const filtersTags = new FiltersTags(this._tagsDatas)
         filtersTags.run()
     }
 
@@ -54,16 +60,20 @@ class RecipesPage {
             // display recipes cards
             this.displayRecipeCard(recipe)
             // log filters tags
-            this.logTags(recipe)
+            // this.logTags(recipe)
         })
-        console.log(this._tagsDatas)
+        // console.log(this._tagsDatas)
         // display filters tags
-        this.displayFiltersTags()
+        // this.displayFiltersTags()
     }
 
     run() {
         this.launchSearchBar()
         this.displayContent()
+        this.displayFiltersTags()
+
+        // this._tagsDatas.createTags(this._recipesDatas)
+
     }
 }
 
