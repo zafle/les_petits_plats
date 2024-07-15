@@ -24,7 +24,7 @@ class FiltersTags {
     createTag(tag, $tags) {
         const $tagItem = document.createElement("a")
         $tagItem.setAttribute("href", "#")
-        $tagItem.classList.add("filter__tag")
+        $tagItem.classList.add("filter__tag", "list-group-item", "border-0", "py-0", "fs-2", "text-dark", "bg-transparent")
         $tagItem.innerText = tag
         $tags.append($tagItem)
     }
@@ -48,9 +48,8 @@ class FiltersTags {
     openFilter() {
         this.$filterButton.forEach(button => {
             button.addEventListener("click", (e) => {
-                e.stopPropagation()
-                e.target.closest(".filters__item").classList.toggle("filter--opened")
-                e.target.nextElementSibling.classList.toggle("filter--opened")
+                e.target.nextElementSibling.classList.toggle("animate-height-271")
+                e.target.firstElementChild.classList.toggle("transform-scale-vmirror")
             })
         })
     }

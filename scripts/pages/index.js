@@ -5,7 +5,8 @@ class RecipesPage {
     constructor() {
         this._recipesDatas = [];
 
-        this.$recipeSection = document.querySelector(".recipes")
+        // this.$recipeSection = document.querySelector(".recipes")
+        this.$recipesCardsWrapper = document.querySelector(".recipes__cards-wrapper")
 
     }
 
@@ -20,7 +21,8 @@ class RecipesPage {
 
     displayRecipeCard(recipe) {
         const Template = new RecipeCard(recipe)
-        this.$recipeSection.append(Template.createRecipeCard())
+        // this.$recipeSection.append(Template.createRecipepCard())
+        this.$recipesCardsWrapper.append(Template.createRecipeBootstrapCard())
     }
 
     // logTags(recipe) {

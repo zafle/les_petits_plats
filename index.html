@@ -11,68 +11,94 @@
     <title>Les petits plats</title>
 </head>
 <body>
-    <div class="main-container">
-        <header class="main-header">
-            <img src="assets/images/logo.png" alt="Les petits plats" class="main-header__logo">
-            <h1 class="main-header__title">Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses</h1>
-            <form class="main-header__search-bar">
-                <label for="recipe-search" class="sr-only">Search a recipe</label>
-                <input type="text" class="main-header__search-input" id="recipe-search" name="recipe-query" placeholder="Rechercher une recette, un ingrédient, ...">
-                <img class="main-header__close-search" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
-                <input type="image" class="main-header__search-button" alt="search" src="assets/images/magnifier-white.png">
-            </form>
+    <div class="container-fluid mw-1440 p-0">
+        <header class="main-header position-relative h-667">
+            <img class="w-100" src="assets/images/header-image.jpg" alt="">
+            <div class="w-100 position-absolute top-0 start-0 px-70 py-50">
+                <img class="main-header__logo w-207" src="assets/images/logo.png" alt="Les petits plats">
+                <h1 class="main-header__title font-title fs-6 mw-700 mx-auto mt-170 text-primary text-uppercase text-center lh-base">
+                    Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses
+                </h1>
+                <form class="main-header__search-bar mw-955 h-72 mx-auto d-flex justify-content-end align-items-center bg-white rounded-6 p-10 mt-30 w-100">
+                        <input type="text" class="main-header__search-input flex-fill border-0 ps-25 text-secondary cursor-pointer ol-0-focus-visible" id="recipe-search" name="recipe-query" placeholder="Rechercher une recette, un ingrédient, ...">
+                        <img class="main-header__close-search w-13 h-13 me-3 p-0 cursor-pointer" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
+                        <input type="image" class="main-header__search-button w-52 h-52 bg-dark bg-primary-hover rounded-6 p-12" alt="search" src="assets/images/magnifier-white.png">
+                </form>
+            </div>
         </header>
         <main>
-            <section class="filters">
-                <h2 class="filters__main-title" id="recipes_amount">1500 recettes</h2>
-                <ul class="filters__list">
-                    <li class="filters__item">
-                        <div class="filters__header">
-                            <h3 class="filters__title">Ingrédients</h3>
-                            <img class="filters__open" src="assets/images/open.png" alt="open filter">
-                        </div>
-                        <div class="filters__dropdown">
-                            <div class="filters__search">
-                                <input class="filters__search__input" type="text">
-                                <img class="filters__close-search" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
-                                <img class="filters__search__icon" src="assets/images/magnifier-grey.png" alt="search ingredient">
+            <div class="container-fluid px-78 pt-20 pb-200 bg-custom">
+                <section class="filters position-relative pb-55 px-4">
+                    <div class="float-end">
+                        <h2 class="filters__main-title font-title" id="recipes_amount">1500 recettes</h2>
+                    </div>
+                    <div class="filters__list d-flex justify-content-between gap-65 position-absolute z-1">
+
+                        <!-- Ingredients -->
+                        <div class="filters__item w-195 flex-shrink-0">
+                            <button class="filters__header w-100 btn bg-white p-3 text-dark fw-medium fs-3 d-flex justify-content-between align-items-center border-0">
+                                Ingrédients
+                                <img class="filters__open w-13 pe-none transition-easeout" src="assets/images/open.png" alt="open filter">
+                            </button>
+                            <div class="filters__dropdown bg-white w-100 mt-negative pt-12 rounded-bottom rounded-6 h-0 transition-easeout overflow-hidden">
+                                <div class="px-3 mb-20">
+                                    <div class="filters__search d-flex justify-content-between align-items-center flex-nowrap border border-1 border-light rounded-7 h-36 p-2">
+                                        <input class="filters__search__input flex-fill w-50 border-0 fs-2 text-secondary ol-0-focus-visible" type="text">
+                                        <img class="filters__close-search w-26 h-26 p-10 cursor-pointer d-none" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
+                                        <img class="filters__search__icon w-14 cursor-pointer" src="assets/images/magnifier-grey.png" alt="search ingredient" title="Rechercher">
+                                    </div>
+                                </div>
+                                <div class="filters__tags filters__tags--ingredients list-group list-group-flush h-203 gap-11 overflow-scroll hidden-scrollbar"></div>
                             </div>
-                            <div class="filters__tags filters__tags--ingredients"></div>
                         </div>
-                    </li>
-                    <li class="filters__item">
-                        <div class="filters__header">
-                            <h3 class="filters__title">Appareils</h3>
-                            <img class="filters__open" src="assets/images/open.png" alt="open filter">
-                        </div>
-                        <div class="filters__dropdown">
-                            <div class="filters__search">
-                                <input class="filters__search__input" type="text">
-                                <img class="filters__close-search" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
-                                <img class="filters__search__icon" src="assets/images/magnifier-grey.png" alt="search ingredient">
+
+                        <!-- Appliances -->
+                        <div class="filters__item w-195 flex-shrink-0">
+                            <button class="filters__header w-100 btn bg-white p-3 text-dark fw-medium fs-3 d-flex justify-content-between align-items-center border-0">
+                                Appareils
+                                <img class="filters__open w-13 pe-none transition-easeout" src="assets/images/open.png" alt="open filter">
+                            </button>
+                            <div class="filters__dropdown bg-white w-100 mt-negative pt-12 rounded-bottom rounded-6 h-0 transition-easeout overflow-hidden">
+                                <div class="px-3 mb-20">
+                                    <div class="filters__search d-flex justify-content-between align-items-center flex-nowrap border border-1 border-light rounded-7 h-36 p-2">
+                                        <input class="filters__search__input flex-fill w-50 border-0 fs-2 text-secondary ol-0-focus-visible" type="text">
+                                        <img class="filters__close-search w-26 h-26 p-10 cursor-pointer d-none" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
+                                        <img class="filters__search__icon w-14 cursor-pointer" src="assets/images/magnifier-grey.png" alt="search ingredient" title="Rechercher">
+                                    </div>
+                                </div>
+                                <div class="filters__tags filters__tags--appliance list-group list-group-flush h-203 gap-11 overflow-scroll hidden-scrollbar"></div>
                             </div>
-                            <div class="filters__tags filters__tags--appliance"></div>
                         </div>
-                    </li>
-                    <li class="filters__item">
-                        <div class="filters__header">
-                            <h3 class="filters__title">Ustensiles</h3>
-                            <img class="filters__open" src="assets/images/open.png" alt="open filter">
-                        </div>
-                        <div class="filters__dropdown">
-                            <div class="filters__search">
-                                <input class="filters__search__input" type="text">
-                                <img class="filters__close-search" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
-                                <img class="filters__search__icon" src="assets/images/magnifier-grey.png" alt="search ingredient">
+
+                        <!-- Ustensils -->
+                        <div class="filters__item w-195 flex-shrink-0">
+                            <button class="filters__header w-100 btn bg-white p-3 text-dark fw-medium fs-3 d-flex justify-content-between align-items-center border-0">
+                                Ustensiles
+                                <img class="filters__open w-13 pe-none transition-easeout" src="assets/images/open.png" alt="open filter">
+                            </button>
+                            <div class="filters__dropdown bg-white w-100 mt-negative pt-12 rounded-bottom rounded-6 h-0 transition-easeout overflow-hidden">
+                                <div class="px-3 mb-20">
+                                    <div class="filters__search d-flex justify-content-between align-items-center flex-nowrap border border-1 border-light rounded-7 h-36 p-2">
+                                        <input class="filters__search__input flex-fill w-50 border-0 fs-2 text-secondary ol-0-focus-visible" type="text">
+                                        <img class="filters__close-search w-26 h-26 p-10 cursor-pointer d-none" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
+                                        <img class="filters__search__icon w-14 cursor-pointer" src="assets/images/magnifier-grey.png" alt="search ingredient" title="Rechercher">
+                                    </div>
+                                </div>
+                                <div class="filters__tags filters__tags--ustensils list-group list-group-flush h-203 gap-11 overflow-scroll hidden-scrollbar"></div>
                             </div>
-                            <div class="filters__tags filters__tags--ustensils"></div>
                         </div>
-                    </li>
-                </ul>
-            </section>
-            <section class="recipes"></section>
+
+                    </div>
+                </section>
+                <section class="recipes">
+                    <div class="row row-cols-3 gx-48 gy-65 w-100 m-0 recipes__cards-wrapper"></div>
+                </section>
+            </div>
         </main>
     </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
     <!-- Datas -->
     <script src="data/recipes.js"></script>
     <!-- Models -->

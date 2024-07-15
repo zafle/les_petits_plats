@@ -1,0 +1,79 @@
+// old
+// ####### COLORS #######
+// $yellow: #FFD15B;
+// $black: #1B1B1B;
+// $grey: #7A7A7A;
+// $light-grey: #C6C6C6;
+// $background: #EDEDED;
+
+// ####### TYPOGRAPHIE #######
+// $base-font-size: 16px;
+// $title-font: "Anton", sans-serif;
+// $main-font: "Manrope", sans-serif;
+// $regular: 400;
+// $medium: 500;
+// $bold: 700;
+
+// new bootstrap
+
+// ####### COLORS #######
+$primary: #FFD15B;
+$secondary: #7A7A7A;
+$dark: #1B1B1B;
+$light: #C6C6C6;
+
+$background: #EDEDED;
+
+// ####### TYPOGRAPHIE #######
+// $base-font-size: 16px;
+$font-family: "Manrope", sans-serif;
+$title-font: "Anton", sans-serif;
+// $regular: 400;
+// $medium: 500;
+// $bold: 700;
+
+// font-sizes
+$font-sizes: (
+  1: 0.75rem,
+  2: 0.875rem,
+  3: 1rem,
+  4: 1.125rem,
+  5: 1.325rem,
+  6: 2.75rem,
+);
+
+
+//  spacers
+$spacer: 1rem !default;
+$spacers: (
+  negative: $spacer * -0.75,
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 0.375,
+  10: $spacer * 0.625,
+  11: $spacer * 0.685,
+  12: $spacer * 0.75,
+  15: $spacer * 0.945,
+  18: $spacer * 1.125,
+  20: $spacer * 1.25,
+  25: $spacer * 1.575,
+  30: $spacer * 1.875,
+  32: $spacer * 2,
+  48: $spacer * 3,
+  50: $spacer * 3.125,
+  55: $spacer * 3.45,
+  60: $spacer * 3.75,
+  65: $spacer * 4,
+  70: $spacer * 4.375,
+  78: $spacer * 4.875,
+  170: $spacer * 10.625,
+  200: $spacer * 12.5,
+) !default;
+
+// line-height
+$line-height-sm: 1.3;
+$line-height-lg: 2.2;

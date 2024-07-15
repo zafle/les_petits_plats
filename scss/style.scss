@@ -1,4 +1,7 @@
+// Customs
 @import "variables_overrides.scss";
+@import "variables_customs.scss";
 @import "utilities_custom.scss";
 
-@import "../node_modules/bootstrap/scss/bootstrap.scss"
+// Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap.scss";

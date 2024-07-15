@@ -3,7 +3,8 @@
 @import "../node_modules/bootstrap/scss/maps";
 @import "../node_modules/bootstrap/scss/utilities";
 
-// max-width: 1440px
+
+// add max-width
 $utilities: map-merge(
   $utilities,
   (
@@ -12,9 +13,234 @@ $utilities: map-merge(
       (
         values: map-merge(
           map-get(map-get($utilities, "max-width"), "values"),
-          (1440: 1440px),
+          (700: 700px,
+          955: 955px,
+          1440: 1440px),
         ),
       ),
     ),
+  )
+);
+
+//  add width
+$utilities: map-merge(
+  $utilities,
+  (
+    "width": map-merge(
+      map-get($utilities, "width"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "width"), "values"),
+          (
+            6: 6px,
+            13: 13px,
+            14: 14px,
+            26: 26px,
+            52: 52px,
+            63: 63px,
+            195: 195px,
+            207: 207px,
+            380: 380px,
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+// add height
+$utilities: map-merge(
+  $utilities,
+  (
+    "height": map-merge(
+      map-get($utilities, "height"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "height"), "values"),
+          (
+            0: 0px,
+            6: 6px,
+            13: 13px,
+            26: 26px,
+            36: 36px,
+            52: 52px,
+            56: 56px,
+            72: 72px,
+            76: 76px,
+            203: 203px,
+            253: 253px,
+            667: 667px,
+            730: 730px
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+// add background hover
+$utilities: map-merge(
+  $utilities,
+  (
+    "background-color": map-merge(
+      map-get($utilities, "background-color"),
+      (
+        state: hover,
+        values: map-merge(
+          map-get(map-get($utilities, "background-color"), "values"),
+          (
+            primary: $primary,
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+// add background color
+$utilities: map-merge(
+  $utilities,
+  (
+    "background-color": map-merge(
+      map-get($utilities, "background-color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "background-color"), "values"),
+          (
+            custom: $background
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+// add border-radius
+$utilities: map-merge(
+  $utilities,
+  (
+    "rounded": map-merge(
+      map-get($utilities, "rounded"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "rounded"), "values"),
+          (
+            6: 11px,
+            7: 2px,
+            8: 14px,
+            9: 21px
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+// add border-top-radius
+$utilities: map-merge(
+  $utilities,
+  (
+    "rounded-top": map-merge(
+      map-get($utilities, "rounded-top"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "rounded-top"), "values"),
+          (
+            9: 21px
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+// add font family
+$utilities: map-merge(
+  $utilities,
+  (
+    "font-family": map-merge(
+      map-get($utilities, "font-family"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "font-family"), "values"),
+          (
+            title: $title-font
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+// create outline focus visible
+$utilities: map-merge(
+  $utilities,
+  (
+    "outline-focus-visible": (
+      property: outline,
+      class: ol,
+      state: focus-visible,
+      values: (
+        0: none,
+      ),
+    )
+  )
+);
+
+// create cursor
+$utilities: map-merge(
+  $utilities,
+  (
+    "cursor": (
+      property: cursor,
+      class: cursor,
+      responsive: true,
+      values: auto pointer grab,
+    )
+  )
+);
+
+// create transitions
+$utilities: map-merge(
+  $utilities,
+  (
+    "transition": (
+      property: transition,
+      class: transition,
+      responsive: true,
+      values: (
+        easeout: all 300ms ease-out,
+      ),
+    )
+  )
+);
+
+// create animate height
+$utilities: map-merge(
+  $utilities,
+  (
+    "animate-height": (
+      property: height,
+      class: animate-height,
+      responsive: true,
+      values: (
+        271: 271px,
+      ),
+    )
+  )
+);
+
+// create transform scale
+$utilities: map-merge(
+  $utilities,
+  (
+    "transform-scale": (
+      property: transform,
+      class: transform-scale,
+      responsive: true,
+      values: (
+        vmirror: scale(1, -1),
+      ),
+    )
   )
 );
