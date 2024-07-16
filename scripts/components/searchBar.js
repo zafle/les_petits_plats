@@ -23,6 +23,15 @@ class SearchBar {
         })
     }
 
+    launchSearch(recipes) {
+        this.$searchInput.addEventListener("change", () => {
+
+
+        })
+    }
+
+
+
     run() {
         this.buttonHover()
         this.displayCloseButton()

@@ -1,10 +1,5 @@
-/* Hide scrollbar */
-.hidden-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
+// ####### TYPOGRAPHIE #######
+$title-font: "Anton", sans-serif;
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.hidden-scrollbar::-webkit-scrollbar {
-    display: none;
-}
+// ####### COLORS #######
+$background: #EDEDED;
