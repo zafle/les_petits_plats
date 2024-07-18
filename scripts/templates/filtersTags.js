@@ -55,6 +55,18 @@ class FiltersTags {
     }
 
     onClickTag() {
+        const tags = document.querySelectorAll(".filter__tag")
+        tags.forEach(tag => {
+            tag.addEventListener("click", (e) => {
+                e.preventDefault()
+
+            })
+        })
+
+    }
+
+    addTag() {
+
 
 
     }

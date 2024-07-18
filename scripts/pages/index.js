@@ -6,13 +6,13 @@ class RecipesPage {
         this._recipesDatas = [];
 
         this.$recipesCardsWrapper = document.querySelector(".recipes__cards-wrapper")
+        this.$noRecipe = document.querySelector(".norecipe")
+
+        this.$searchButton = document.querySelector(".main-header__search-button")
+        this.$searchInput = document.querySelector(".main-header__search-input")
     }
 
-    launchSearchBar() {
-        const searchBar = new SearchBar()
-        searchBar.run()
-    }
-
+    // Recipes
     mapRecipes() {
         this._recipesDatas = recipes.map(recipe => new RecipeData(recipe))
     }
@@ -22,6 +22,13 @@ class RecipesPage {
         this.$recipesCardsWrapper.append(Template.createRecipeCard())
     }
 
+    displayContent(recipes) {
+        recipes.forEach(recipe => {
+            this.displayRecipeCard(recipe)
+        })
+    }
+
+    // Filters
     createFiltersTags() {
         this._tagsDatas = new TagsDatas(this._recipesDatas)
         this._tagsDatas.createTags()
@@ -33,18 +40,18 @@ class RecipesPage {
         filtersTags.run()
     }
 
-    displayContent() {
-        this.mapRecipes()
-
-        this._recipesDatas.forEach(recipe => {
-            this.displayRecipeCard(recipe)
-        })
+    // Search bar
+    runSearchBar() {
+        const searchBar = new SearchBar(this._recipesDatas)
+        searchBar.run()
     }
 
+    // run
     run() {
-        this.launchSearchBar()
-        this.displayContent()
+        this.mapRecipes()
+        this.displayContent(this._recipesDatas)
         this.displayFiltersTags()
+        this.runSearchBar()
     }
 }
 

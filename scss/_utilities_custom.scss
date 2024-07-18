@@ -33,6 +33,7 @@ $utilities: map-merge(
           map-get(map-get($utilities, "width"), "values"),
           (
             6: 6px,
+            10: 10px,
             13: 13px,
             14: 14px,
             26: 26px,
@@ -60,10 +61,12 @@ $utilities: map-merge(
           (
             0: 0px,
             6: 6px,
+            10: 10px,
             13: 13px,
             26: 26px,
             36: 36px,
             52: 52px,
+            53: 53px,
             56: 56px,
             72: 72px,
             76: 76px,

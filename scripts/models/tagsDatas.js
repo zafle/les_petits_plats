@@ -22,44 +22,38 @@ class TagsDatas {
         return this._ustensilsTags
     }
 
-    removeDuplicates(array) {
-        const arrayToLowerCase = array.map(tag => tag.toLowerCase())
-        let uniquesToLowerCase = []
-        let uniques = []
-
-        for (let i = 0; i < array.length; i++) {
-            if (!uniquesToLowerCase.includes(arrayToLowerCase[i])) {
-                uniquesToLowerCase.push(arrayToLowerCase[i])
-                uniques.push(array[i])
+    checkTagExists(tag, array) {
+        let tagExists = false
+        if (array.length) {
+            for (let item of array) {
+                if (item.toLowerCase() === tag.toLowerCase()) {
+                    tagExists = true
+                    break
+                }
             }
         }
-
-        return uniques
+        if (tagExists === false) {
+            array.push(tag)
+        }
     }
 
     createArrays() {
         this._recipes.forEach(recipe => {
             recipe.ingredientsTags.forEach(ingredient => {
-                this._ingredientsTags.push(ingredient)
+                this.checkTagExists(ingredient, this._ingredientsTags)
             })
 
-            this._appliancesTags.push(recipe.applianceTag)
+            this.checkTagExists(recipe.applianceTag, this._appliancesTags)
 
             recipe.ustensilsTags.forEach(ustensil => {
-                this._ustensilsTags.push(ustensil)
+                this.checkTagExists(ustensil, this._ustensilsTags)
             })
         })
     }
 
-    createUniquesTagsArrays() {
-        this._ingredientsTags = this.removeDuplicates(this._ingredientsTags)
-        this._appliancesTags = this.removeDuplicates(this._appliancesTags)
-        this._ustensilsTags = this.removeDuplicates(this._ustensilsTags)
-    }
-
     createTags() {
         this.createArrays()
-        this.createUniquesTagsArrays()
+        // this.createUniquesTagsArrays()
     }
 
 

@@ -21,14 +21,14 @@
                 </h1>
                 <form class="main-header__search-bar mw-955 h-72 mx-auto d-flex justify-content-end align-items-center bg-white rounded-6 p-10 mt-30 w-100">
                         <input type="text" class="main-header__search-input flex-fill border-0 ps-25 text-secondary cursor-pointer ol-0-focus-visible" id="recipe-search" name="recipe-query" placeholder="Rechercher une recette, un ingrédient, ...">
-                        <img class="main-header__close-search w-13 h-13 me-3 p-0 cursor-pointer" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
+                        <img class="main-header__close-search w-13 h-13 me-3 p-0 cursor-pointer d-none" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
                         <input type="image" class="main-header__search-button w-52 h-52 bg-dark bg-primary-hover rounded-6 p-12" alt="search" src="assets/images/magnifier-white.png">
                 </form>
             </div>
         </header>
         <main>
             <div class="container-fluid px-78 pt-20 pb-200 bg-custom">
-                <section class="filters position-relative pb-55 px-4">
+                <section class="filters position-relative pb-30 px-4 clearfix">
                     <div class="float-end">
                         <h2 class="filters__main-title font-title" id="recipes_amount">1500 recettes</h2>
                     </div>
@@ -36,7 +36,7 @@
 
                         <!-- Ingredients -->
                         <div class="filters__item w-195 flex-shrink-0">
-                            <button class="filters__header w-100 btn bg-white p-3 text-dark fw-medium fs-3 d-flex justify-content-between align-items-center border-0">
+                            <button class="filters__header w-100 btn bg-white p-3 text-dark fw-semibold fs-3 d-flex justify-content-between align-items-center border-0">
                                 Ingrédients
                                 <img class="filters__open w-13 pe-none transition-easeout" src="assets/images/open.png" alt="open filter">
                             </button>
@@ -54,7 +54,7 @@
 
                         <!-- Appliances -->
                         <div class="filters__item w-195 flex-shrink-0">
-                            <button class="filters__header w-100 btn bg-white p-3 text-dark fw-medium fs-3 d-flex justify-content-between align-items-center border-0">
+                            <button class="filters__header w-100 btn bg-white p-3 text-dark fw-semibold fs-3 d-flex justify-content-between align-items-center border-0">
                                 Appareils
                                 <img class="filters__open w-13 pe-none transition-easeout" src="assets/images/open.png" alt="open filter">
                             </button>
@@ -72,7 +72,7 @@
 
                         <!-- Ustensils -->
                         <div class="filters__item w-195 flex-shrink-0">
-                            <button class="filters__header w-100 btn bg-white p-3 text-dark fw-medium fs-3 d-flex justify-content-between align-items-center border-0">
+                            <button class="filters__header w-100 btn bg-white p-3 text-dark fw-semibold fs-3 d-flex justify-content-between align-items-center border-0">
                                 Ustensiles
                                 <img class="filters__open w-13 pe-none transition-easeout" src="assets/images/open.png" alt="open filter">
                             </button>
@@ -89,8 +89,13 @@
                         </div>
 
                     </div>
+
+                </section>
+                <section class="search-labels px-4">
+                    <ul class="search-labels__list d-flex m-0 p-0"></ul>
                 </section>
                 <section class="recipes">
+                    <p class="fs-4 m-0 text-center norecipe"></p>
                     <div class="row row-cols-3 gx-48 gy-65 w-100 m-0 recipes__cards-wrapper"></div>
                 </section>
             </div>
@@ -111,7 +116,7 @@
     <!-- Components -->
      <script src="scripts/components/searchBar.js"></script>
     <!-- Utils -->
-    <script src="scripts/utils/filter.js"></script>
+    <script src="scripts/utils/search.js"></script>
     <!-- Pages -->
     <script src="scripts/pages/index.js"></script>
 </body>
