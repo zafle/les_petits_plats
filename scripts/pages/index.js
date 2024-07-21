@@ -4,6 +4,7 @@ class RecipesPage {
      */
     constructor() {
         this._recipesDatas = [];
+        this._tagsDatas = []
 
         this.$recipesCardsWrapper = document.querySelector(".recipes__cards-wrapper")
         this.$noRecipe = document.querySelector(".norecipe")
@@ -12,35 +13,48 @@ class RecipesPage {
         this.$searchInput = document.querySelector(".main-header__search-input")
     }
 
-    // Recipes
+    // Recipes Content
     mapRecipes() {
         this._recipesDatas = recipes.map(recipe => new RecipeData(recipe))
     }
 
-    displayRecipeCard(recipe) {
-        const Template = new RecipeCard(recipe)
-        this.$recipesCardsWrapper.append(Template.createRecipeCard())
-    }
+    // displayRecipeCard(recipe) {
+    //     const Template = new RecipeCard(recipe)
+    //     this.$recipesCardsWrapper.append(Template.createRecipeCard())
+    // }
 
     displayContent(recipes) {
         recipes.forEach(recipe => {
-            this.displayRecipeCard(recipe)
+            const Template = new RecipeCard(recipe)
+            this.$recipesCardsWrapper.append(Template.createRecipeCard())
         })
     }
 
-    // Filters
+    // // Filters Content
+    // createFiltersTags() {
+    //     this._tagsDatas = new TagsDatas(this._recipesDatas)
+    //     this._tagsDatas.createTags()
+    // }
+
+    // displayFiltersTags() {
+    //     this.createFiltersTags()
+    //     const filtersTags = new FiltersTags(this._tagsDatas, this._recipesDatas)
+    //     filtersTags.run()
+    // }
+
+
+
+    // Filters Functionnalities
     createFiltersTags() {
         this._tagsDatas = new TagsDatas(this._recipesDatas)
-        this._tagsDatas.createTags()
+        this._tagsDatas.createTagsArrays()
+    }
+    runFilters() {
+        const searchFilter = new SearchFilter(this._recipesDatas, this._tagsDatas)
+        searchFilter.run()
     }
 
-    displayFiltersTags() {
-        this.createFiltersTags()
-        const filtersTags = new FiltersTags(this._tagsDatas)
-        filtersTags.run()
-    }
-
-    // Search bar
+    // Search bar functionnality
     runSearchBar() {
         const searchBar = new SearchBar(this._recipesDatas)
         searchBar.run()
@@ -50,7 +64,9 @@ class RecipesPage {
     run() {
         this.mapRecipes()
         this.displayContent(this._recipesDatas)
-        this.displayFiltersTags()
+        // this.displayFiltersTags()
+        this.createFiltersTags()
+        this.runFilters()
         this.runSearchBar()
     }
 }

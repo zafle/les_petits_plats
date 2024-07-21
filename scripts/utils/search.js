@@ -17,10 +17,10 @@ class Search {
         request = this.removeAccent(request)
         property = this.removeAccent(property)
 
-        // test regex : without final s (or any last letter), with an additionnal final s, case insensitive
+        // test regex : without final s, with an additionnal final s, case insensitive
 
         // const pattern = new RegExp(`\\b${request}?(?:s)?\\b`, "i") ---- pour mot entier != groupe de lettres
-        const pattern = new RegExp(`${request}?(?:s)?`, "i")
+        const pattern = new RegExp(`${request}(?:s)?`, "i")
         return pattern.test(property)
     }
 
@@ -66,10 +66,40 @@ class Search {
             }
         }
 
-        //  update Tags
-        // this.updateTags(this._sortedRecipes)
         console.log(this._sortedRecipes)
         return this._sortedRecipes
+    }
+
+
+    fireSearchTag(request, tagsArray) {
+
+        const filteredTags = []
+
+        for (let item of tagsArray) {
+           let tag = item.innerText
+
+            if ( this.searchRequest(request, tag) ) {
+                filteredTags.push(item)
+            }
+        }
+
+        return filteredTags
+    }
+
+    fireFilterRecipes(request, filter, recipes) {
+
+        const filteredRecipes = []
+
+        for (let recipe of recipes) {
+
+            const property = recipe[`${filter}Tags`]
+
+            if ( this.searchRequest(request, property) ) {
+                filteredRecipes.push(recipe)
+            }
+        }
+
+        return filteredRecipes
     }
 
 }

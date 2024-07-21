@@ -43,12 +43,12 @@
                             <div class="filters__dropdown bg-white w-100 mt-negative pt-12 rounded-bottom rounded-6 h-0 transition-easeout overflow-hidden">
                                 <div class="px-3 mb-20">
                                     <div class="filters__search d-flex justify-content-between align-items-center flex-nowrap border border-1 border-light rounded-7 h-36 p-2">
-                                        <input class="filters__search__input flex-fill w-50 border-0 fs-2 text-secondary ol-0-focus-visible" type="text">
+                                        <input class="filters__search__input flex-fill w-50 border-0 fs-2 text-secondary ol-0-focus-visible" type="text" name="ingredients">
                                         <img class="filters__close-search w-26 h-26 p-10 cursor-pointer d-none" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
                                         <img class="filters__search__icon w-14 cursor-pointer" src="assets/images/magnifier-grey.png" alt="search ingredient" title="Rechercher">
                                     </div>
                                 </div>
-                                <div class="filters__tags filters__tags--ingredients list-group list-group-flush h-203 gap-11 overflow-scroll hidden-scrollbar"></div>
+                                <div class="filters__tags filters__tags--ingredients list-group list-group-flush mh-203 gap-11 overflow-scroll hidden-scrollbar"></div>
                             </div>
                         </div>
 
@@ -61,12 +61,12 @@
                             <div class="filters__dropdown bg-white w-100 mt-negative pt-12 rounded-bottom rounded-6 h-0 transition-easeout overflow-hidden">
                                 <div class="px-3 mb-20">
                                     <div class="filters__search d-flex justify-content-between align-items-center flex-nowrap border border-1 border-light rounded-7 h-36 p-2">
-                                        <input class="filters__search__input flex-fill w-50 border-0 fs-2 text-secondary ol-0-focus-visible" type="text">
+                                        <input class="filters__search__input flex-fill w-50 border-0 fs-2 text-secondary ol-0-focus-visible" type="text" name="appliance">
                                         <img class="filters__close-search w-26 h-26 p-10 cursor-pointer d-none" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
                                         <img class="filters__search__icon w-14 cursor-pointer" src="assets/images/magnifier-grey.png" alt="search ingredient" title="Rechercher">
                                     </div>
                                 </div>
-                                <div class="filters__tags filters__tags--appliance list-group list-group-flush h-203 gap-11 overflow-scroll hidden-scrollbar"></div>
+                                <div class="filters__tags filters__tags--appliances list-group list-group-flush h-203 gap-11 overflow-scroll hidden-scrollbar"></div>
                             </div>
                         </div>
 
@@ -79,7 +79,7 @@
                             <div class="filters__dropdown bg-white w-100 mt-negative pt-12 rounded-bottom rounded-6 h-0 transition-easeout overflow-hidden">
                                 <div class="px-3 mb-20">
                                     <div class="filters__search d-flex justify-content-between align-items-center flex-nowrap border border-1 border-light rounded-7 h-36 p-2">
-                                        <input class="filters__search__input flex-fill w-50 border-0 fs-2 text-secondary ol-0-focus-visible" type="text">
+                                        <input class="filters__search__input flex-fill w-50 border-0 fs-2 text-secondary ol-0-focus-visible" type="text" name="ustensils">
                                         <img class="filters__close-search w-26 h-26 p-10 cursor-pointer d-none" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
                                         <img class="filters__search__icon w-14 cursor-pointer" src="assets/images/magnifier-grey.png" alt="search ingredient" title="Rechercher">
                                     </div>
@@ -115,8 +115,12 @@
     <script src="scripts/templates/filtersTags.js"></script>
     <!-- Components -->
      <script src="scripts/components/searchBar.js"></script>
+     <script src="scripts/components/searchFilter.js"></script>
+     <script src="scripts/components/label.js"></script>
     <!-- Utils -->
+    <script src="scripts/utils/secureRequest.js"></script>
     <script src="scripts/utils/search.js"></script>
+    <script src="scripts/utils/filter.js"></script>
     <!-- Pages -->
     <script src="scripts/pages/index.js"></script>
 </body>

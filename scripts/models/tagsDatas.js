@@ -37,7 +37,7 @@ class TagsDatas {
         }
     }
 
-    createArrays() {
+    createTagsArrays() {
         this._recipes.forEach(recipe => {
             recipe.ingredientsTags.forEach(ingredient => {
                 this.checkTagExists(ingredient, this._ingredientsTags)
@@ -51,10 +51,10 @@ class TagsDatas {
         })
     }
 
-    createTags() {
-        this.createArrays()
-        // this.createUniquesTagsArrays()
-    }
+    // createTags() {
+    //     this.createArrays()
+    //     // this.createUniquesTagsArrays()
+    // }
 
 
 }

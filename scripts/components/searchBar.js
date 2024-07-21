@@ -11,15 +11,14 @@ class SearchBar {
 
         // recipe section
         this.$noRecipe = document.querySelector(".norecipe")
-        this.$recipesCardsWrapper = document.querySelector(".recipes__cards-wrapper")
         this.$recipesAmount = document.getElementById("recipes_amount")
-        this.$labelsList = document.querySelector(".search-labels__list")
+        this.$recipesCardsWrapper = document.querySelector(".recipes__cards-wrapper")
 
         // filter tags
         this.$filtersTags = document.querySelectorAll(".filters__tags")
     }
 
-    // bar
+    //  --- bar event listeners ---
     buttonHover() {
         this.$button.addEventListener("mouseover", () => {
             this.$button.src = "assets/images/magnifier-black.png"
@@ -32,118 +31,99 @@ class SearchBar {
     closeSearch() {
         this.$closeButton.addEventListener("click", () => {
             this.$searchInput.value = ""
-            this.displayAllRecipes()
+            this.clearContent()
+            this.updateContent(this._recipes)
         })
     }
 
-    // Tags
-    updateTags(sortedRecipes) {
-        this.$filtersTags.forEach(filter => filter.innerHTML = "")
+    onSearchBarRequest() {
+        this.$searchInput.addEventListener("input", (e) => {
 
-        const newTagsDatas = new TagsDatas(sortedRecipes)
-        newTagsDatas.createTags()
+            let request = SecureRequest.secure(e.target.value)
 
-        const newFilterTags = new FiltersTags(newTagsDatas)
-        newFilterTags.displayTags()
+            if (request.length > 2) {
+                this.sendRequest(request)
+                this.$closeButton.classList.remove("d-none")
+
+            } else {
+                this.updateContent(this._recipes)
+                this.$closeButton.classList.add("d-none")
+            }
+        })
     }
 
-    // launchClickTagEvent() {
-    // }
+    // --- search request ---
+    sendRequest(request) {
 
-    launchSearchTagEvent() {
+        const searchRecipes = new Search()
+        const sortedRecipes = searchRecipes.fire(request, this._recipes)
 
+        this.clearContent()
+
+        // if recipes
+        if (sortedRecipes.length) {
+            this.updateContent(sortedRecipes)
+            this.displaySearchLabelRequest(request)
+
+        // if no recipes
+        } else {
+            this.$recipesAmount.innerText = `0 recettes`
+            this.$noRecipe.innerText = `Aucune recette ne contient "${request}", vous pouvez chercher "Tarte aux Pommes", "Poisson", etc.`
+        }
     }
 
-    // Recipes
-    displayAllRecipes() {
-        this.displayRecipes(this._recipes)
-        this.$closeButton.classList.add("d-none")
-    }
+    // --- Tags ---
+    updateTags(recipes) {
+        const newTagsDatas = new TagsDatas(recipes)
+        newTagsDatas.createTagsArrays()
 
-    displayRecipes(sortedRecipes) {
+        const newFilters = new SearchFilter(recipes, newTagsDatas)
+        newFilters.displayFiltersTags()
+    }
+    //  --- recipes ---
+    updateRecipes(recipes) {
         this.$noRecipe.innerText = ""
 
-        sortedRecipes.forEach(recipe => {
+        recipes.forEach(recipe => {
             const Template = new RecipeCard(recipe)
             this.$recipesCardsWrapper.append(Template.createRecipeCard())
         })
     }
 
+    // --- recipes amount ---
     displayNbRecipes(sortedRecipes) {
         // get 2 digits min number
         const nbRecipes = new Intl.NumberFormat(undefined, { minimumIntegerDigits: 2 }).format(sortedRecipes.length)
         this.$recipesAmount.innerText = `${nbRecipes} recettes`
     }
 
-    displaySearchRequest(request) {
-        const labelSearch = document.createElement("li")
-        labelSearch.classList.add("d-flex", "justify-content-between", "align-items-center", "bg-primary", "rounded-6", "h-53", "px-20")
-        labelSearch.innerHTML = `
-            <span class="me-60 text-black fs-2">${request}</span>
-            <img src="assets/images/close-label.png" alt="remove label" class="close-label w-10 h-10 cursor-pointer">
-        `
-        this.$labelsList.append(labelSearch)
-
-        const closeButton = document.querySelector(".close-label")
-
-        this.onClickSearchLabel(closeButton, labelSearch)
+    // --- Label ---
+    displaySearchLabelRequest(request) {
+        const label = new Label()
+        label.displayLabel(request, "search_bar")
     }
 
-    onClickSearchLabel(closeButton, label) {
-        closeButton.addEventListener("click", (e) => {
-            label.remove()
-
-            // ici ajouter du code pour afficher les recettes en fonction des filtres éventuellmetn sélectionnés
-        })
-    }
-
-    // search
-    secureRequest(request) {
-        // replace multiple spaces, tab, new lines... with single space
-        request = request.replace(/\s\s+/g, ' ')
-        // keep only authorised caracters : spaces, letters, ', -
-        request = request.replace(/[^\x20\x2DA-Za-z\xC0-\xD6\xD8-\xF6\xF8-\xFF']/g, '')
-
-        return request
-    }
-
-    sendRequest(request) {
-
-        const searchRecipes = new Search()
-        const sortedRecipes = searchRecipes.fire(request, this._recipes)
-
+    // --- content ---
+    clearContent() {
+        // Remove recipes and tags
         this.$recipesCardsWrapper.innerHTML = ''
-
-        if (sortedRecipes.length) {
-            this.displayRecipes(sortedRecipes)
-            this.displayNbRecipes(sortedRecipes)
-            this.displaySearchRequest(request)
-            this.updateTags(sortedRecipes)
-
-        } else {
-            this.$noRecipe.innerText = `Aucune recette ne contient "${request}", vous pouvez chercher "Tarte aux Pommes", "Poisson", etc.`
-        }
-
-        this.$closeButton.classList.remove("d-none")
+        this.$filtersTags.forEach(filter => filter.innerHTML = "")
     }
 
-    launchSearchEvent() {
-        this.$searchInput.addEventListener("input", (e) => {
-
-            let request = this.secureRequest(e.target.value)
-
-            if (request.length > 2) {
-                this.sendRequest(request)
-            } else {
-                this.displayAllRecipes()
-            }
-        })
+    updateContent(recipes) {
+        this.updateTags(recipes)
+        this.updateRecipes(recipes)
+        this.displayNbRecipes(recipes)
     }
+
+
+
+
 
     // run
     run() {
         this.buttonHover()
-        this.launchSearchEvent()
+        this.onSearchBarRequest()
         this.closeSearch()
     }
 }

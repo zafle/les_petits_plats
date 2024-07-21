@@ -22,6 +22,24 @@ $utilities: map-merge(
   )
 );
 
+// add max-height
+$utilities: map-merge(
+  $utilities,
+  (
+    "max-height": map-merge(
+      map-get($utilities, "max-height"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "max-height"), "values"),
+          (
+          203: 203px,
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
 //  add width
 $utilities: map-merge(
   $utilities,
@@ -227,7 +245,7 @@ $utilities: map-merge(
       class: animate-height,
       responsive: true,
       values: (
-        271: 271px,
+        auto: auto,
       ),
     )
   )
