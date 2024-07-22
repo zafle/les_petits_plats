@@ -43,7 +43,7 @@ class TagsDatas {
                 this.checkTagExists(ingredient, this._ingredientsTags)
             })
 
-            this.checkTagExists(recipe.applianceTag, this._appliancesTags)
+            this.checkTagExists(recipe.appliancesTags, this._appliancesTags)
 
             recipe.ustensilsTags.forEach(ustensil => {
                 this.checkTagExists(ustensil, this._ustensilsTags)

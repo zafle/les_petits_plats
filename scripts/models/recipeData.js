@@ -44,7 +44,7 @@ class RecipeData {
         return this._ingredients.map(element => element.ingredient)
     }
 
-    get applianceTag() {
+    get appliancesTags() {
         return this._appliance
     }
 

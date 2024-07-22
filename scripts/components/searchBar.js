@@ -91,16 +91,14 @@ class SearchBar {
     }
 
     // --- recipes amount ---
-    displayNbRecipes(sortedRecipes) {
-        // get 2 digits min number
-        const nbRecipes = new Intl.NumberFormat(undefined, { minimumIntegerDigits: 2 }).format(sortedRecipes.length)
-        this.$recipesAmount.innerText = `${nbRecipes} recettes`
+    updateAmount(sortedRecipes) {
+        RecipesAmount.updateAmount(sortedRecipes)
     }
 
     // --- Label ---
     displaySearchLabelRequest(request) {
         const label = new Label()
-        label.displayLabel(request, "search_bar")
+        label.displaySearchLabel(request, "search_bar")
     }
 
     // --- content ---
@@ -113,7 +111,7 @@ class SearchBar {
     updateContent(recipes) {
         this.updateTags(recipes)
         this.updateRecipes(recipes)
-        this.displayNbRecipes(recipes)
+        this.updateAmount(recipes)
     }
 
 

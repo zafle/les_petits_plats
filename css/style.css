@@ -8662,12 +8662,20 @@ textarea.form-control-lg {
   height: 13px !important;
 }
 
+.h-17 {
+  height: 17px !important;
+}
+
 .h-26 {
   height: 26px !important;
 }
 
 .h-36 {
   height: 36px !important;
+}
+
+.h-37 {
+  height: 37px !important;
 }
 
 .h-52 {

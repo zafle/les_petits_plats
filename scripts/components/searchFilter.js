@@ -14,7 +14,7 @@ class SearchFilter {
         // this._ustensils = document.querySelectorAll("[data-tag-type='ustensils']")
 
         this.$ingredients_Wrapper = document.querySelector(".filters__tags--ingredients")
-        this.$appliance_Wrapper = document.querySelector(".filters__tags--appliances")
+        this.$appliances_Wrapper = document.querySelector(".filters__tags--appliances")
         this.$ustensils_Wrapper = document.querySelector(".filters__tags--ustensils")
 
         this.$filtersButtons = document.querySelectorAll(".filters__header")
@@ -39,7 +39,8 @@ class SearchFilter {
     openFilter() {
         this.$filtersButtons.forEach(button => {
             button.addEventListener("click", (e) => {
-                e.target.nextElementSibling.classList.toggle("animate-height-auto")
+                const filter = e.target.dataset.filter
+                document.querySelector(`.filters__dropdown[data-filter="${filter}"]`).classList.toggle("animate-height-auto")
                 e.target.firstElementChild.classList.toggle("transform-scale-vmirror")
             })
         })
@@ -92,8 +93,20 @@ class SearchFilter {
                 const request = e.target.innerText
                 const filter = e.target.dataset.tagType
                 this.applyFilter(request, filter)
+                this.removeFilter(request, filter)
             })
         })
+    }
+
+    // remove filter from list
+    removeFilter(request, filter) {
+        const filters = this[`$${filter}_Wrapper`].childNodes
+        for (let element of filters) {
+            if (element.innerText === request) {
+                element.remove()
+                break
+            }
+        }
     }
 
     applyFilter(request, filter) {
@@ -104,6 +117,10 @@ class SearchFilter {
         this.updateTags(filteredRecipes)
         // update recipes
         this.updateRecipes(filteredRecipes)
+        // update recipes amount
+        this.updateAmount(filteredRecipes)
+        // display label
+        this.displayFilterLabel(request, filter)
     }
 
     sendFilterRequest(request, filter) {
@@ -115,7 +132,7 @@ class SearchFilter {
     updateTags(filteredRecipes) {
         // clear old tags
         this.$ingredients_Wrapper.innerHTML = ""
-        this.$appliance_Wrapper.innerHTML = ""
+        this.$appliances_Wrapper.innerHTML = ""
         this.$ustensils_Wrapper.innerHTML = ""
 
         // Build new Tags Datas
@@ -142,6 +159,17 @@ class SearchFilter {
             const Template = new RecipeCard(recipe)
             this.$recipesCardsWrapper.append(Template.createRecipeCard())
         })
+    }
+
+    // update recipes amount
+    updateAmount(filteredRecipes) {
+        RecipesAmount.updateAmount(filteredRecipes)
+    }
+
+    //  --- add label ---
+    displayFilterLabel(request, filter) {
+        const label = new Label()
+        label.displayFilterLabel(request, filter)
     }
 
 

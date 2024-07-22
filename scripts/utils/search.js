@@ -102,4 +102,12 @@ class Search {
         return filteredRecipes
     }
 
+    searchByLabel(labelsArray) {
+        for (let label of labelsArray) {
+
+        }
+
+
+    }
+
 }

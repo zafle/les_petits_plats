@@ -39,7 +39,7 @@ class FiltersTags {
         })
         // appliances tags
         this._appliances.forEach(appliance => {
-            this.createTag("appliance", appliance, this.$appliancesTags)
+            this.createTag("appliances", appliance, this.$appliancesTags)
         })
 
         // ustensils tags
