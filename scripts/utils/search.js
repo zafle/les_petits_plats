@@ -1,17 +1,10 @@
 class Search {
-    constructor() {
-        // this._request = request
-        this._sortedRecipes = []
 
-
-
-    }
-
-    removeAccent(string) {
+    static removeAccent(string) {
         return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     }
 
-    testRequest(request, property) {
+    static testRequest(request, property) {
 
         // remove accents
         request = this.removeAccent(request)
@@ -24,7 +17,7 @@ class Search {
         return pattern.test(property)
     }
 
-    searchRequest(request, property) {
+    static  searchRequest(request, property) {
 
         let requestFound = false
 
@@ -48,30 +41,33 @@ class Search {
         return requestFound
     }
 
-    fire(request, recipes) {
+    // old name : fire
+    static searchBarRequest(request, recipes) {
+
+        const filteredRecipes = []
 
         for (let recipe of recipes) {
 
             // search request in title
             if ( this.searchRequest(request, recipe.name) ) {
-                this._sortedRecipes.push(recipe)
+                filteredRecipes.push(recipe)
 
             // search request in ingredients
             } else if ( this.searchRequest(request, recipe.ingredientsTags) ) {
-                this._sortedRecipes.push(recipe)
+                filteredRecipes.push(recipe)
 
             // search request in description
             } else if ( this.searchRequest(request, recipe.description) ) {
-                this._sortedRecipes.push(recipe)
+                filteredRecipes.push(recipe)
             }
         }
 
-        console.log(this._sortedRecipes)
-        return this._sortedRecipes
+        return filteredRecipes
     }
 
 
-    fireSearchTag(request, tagsArray) {
+    // old name : fireSearchTag
+    static searchTagFilter(request, tagsArray) {
 
         const filteredTags = []
 
@@ -86,7 +82,8 @@ class Search {
         return filteredTags
     }
 
-    fireFilterRecipes(request, filter, recipes) {
+    // old name : fireFilterRecipes
+    static filterRecipes(request, filter, recipes) {
 
         const filteredRecipes = []
 
@@ -102,12 +99,33 @@ class Search {
         return filteredRecipes
     }
 
-    searchByLabel(labelsArray) {
+    static  searchByLabel(labelsArray, recipes) {
+        console.log("searchby label fired")
+
+        // to store final result
+        const finalRecipes = []
+
+        // to store result after each loop
+        const filteredRecipes = []
+
+        // to store recipes that have to be filtered in the loop
+        const recipesToFilter = recipes
+
         for (let label of labelsArray) {
 
+            const type = label["filter"]
+            const request = label["request"]
+
+            if (type === "search_bar") {
+                filteredRecipes = this.fire(request, recipesToFilter)
+            } else {
+                filteredRecipes = this.fireFilterRecipes(request, type, recipesToFilter)
+            }
+
+            recipesToFilter = filteredRecipes
         }
 
-
+        return finalRecipes
     }
 
 }

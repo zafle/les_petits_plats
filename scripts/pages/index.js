@@ -1,57 +1,34 @@
 class RecipesPage {
-    /** Display homepage
+    /** Display homepage and run functionnalities
      *
      */
     constructor() {
-        this._recipesDatas = [];
-        this._tagsDatas = []
-
-        this.$recipesCardsWrapper = document.querySelector(".recipes__cards-wrapper")
-        this.$noRecipe = document.querySelector(".norecipe")
-
-        this.$searchButton = document.querySelector(".main-header__search-button")
-        this.$searchInput = document.querySelector(".main-header__search-input")
+        this._recipesDatas = []
     }
 
-    // Recipes Content
+    // Map recipes datas
     mapRecipes() {
         this._recipesDatas = recipes.map(recipe => new RecipeData(recipe))
     }
 
-    // displayRecipeCard(recipe) {
-    //     const Template = new RecipeCard(recipe)
-    //     this.$recipesCardsWrapper.append(Template.createRecipeCard())
-    // }
 
-    displayContent(recipes) {
-        recipes.forEach(recipe => {
-            const Template = new RecipeCard(recipe)
-            this.$recipesCardsWrapper.append(Template.createRecipeCard())
-        })
+    // Display content and search functionalities
+    displayContent() {
+       const content = new DisplayContent(this._recipesDatas, this._recipesDatas)
+       content.displayContent()
     }
 
-    // // Filters Content
-    // createFiltersTags() {
-    //     this._tagsDatas = new TagsDatas(this._recipesDatas)
-    //     this._tagsDatas.createTags()
-    // }
 
-    // displayFiltersTags() {
-    //     this.createFiltersTags()
-    //     const filtersTags = new FiltersTags(this._tagsDatas, this._recipesDatas)
-    //     filtersTags.run()
-    // }
-
-
-
-    // Filters Functionnalities
-    createFiltersTags() {
-        this._tagsDatas = new TagsDatas(this._recipesDatas)
-        this._tagsDatas.createTagsArrays()
-    }
+    // Filters functionnalities
     runFilters() {
-        const searchFilter = new SearchFilter(this._recipesDatas, this._tagsDatas)
-        searchFilter.run()
+        const filters = new Filters()
+        filters.run()
+
+        // const searchFilter = new SearchFilter(this._recipesDatas)
+        // searchFilter.run()
+
+        // const selectFilter = new SelectFilter(this._recipesDatas)
+        // selectFilter.run()
     }
 
     // Search bar functionnality
@@ -63,9 +40,7 @@ class RecipesPage {
     // run
     run() {
         this.mapRecipes()
-        this.displayContent(this._recipesDatas)
-        // this.displayFiltersTags()
-        this.createFiltersTags()
+        this.displayContent()
         this.runFilters()
         this.runSearchBar()
     }
