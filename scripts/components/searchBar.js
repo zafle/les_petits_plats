@@ -20,10 +20,13 @@ class SearchBar {
         // labels
         this.$labelsList = document.querySelector(".search-labels__list")
 
+        //  search request
+        this.SearchBar = new SearchBarRequest(this._recipes)
+
     }
 
     //  --- bar event listeners ---
-    buttonHover() {
+    onButtonHover() {
         this.$button.addEventListener("mouseover", () => {
             this.$button.src = "assets/images/magnifier-black.png"
         })
@@ -33,20 +36,35 @@ class SearchBar {
     }
 
 
-    closeSearch() {
+    onCloseSearch() {
         this.$closeButton.addEventListener("click", () => {
-            this.$searchInput.value = ""
+            this.SearchBar.closeSearch()
+        })
+    }
 
-            // afficher recettes avec filtres en cours => nouvelle recherche
-            // this.updateContent(this._recipes)
+    onSearchBarRequest() {
+        this.$searchInput.addEventListener("input", (e) => {
+            e.preventDefault()
+
+            let request = SecureRequest.secure(e.target.value)
+            this.SearchBar.searchBarRequest(request)
+        })
+    }
+
+    onSubmitRequestButton() {
+        this.$button.addEventListener("click", (e) => {
+            e.preventDefault()
         })
     }
 
 
 
+
     // run
     run() {
-        this.buttonHover()
-        this.closeSearch()
+        this.onButtonHover()
+        this.onCloseSearch()
+        this.onSearchBarRequest()
+        this.onSubmitRequestButton()
     }
 }

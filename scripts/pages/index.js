@@ -11,30 +11,19 @@ class RecipesPage {
         this._recipesDatas = recipes.map(recipe => new RecipeData(recipe))
     }
 
-
-    // Display content and search functionalities
+    // Display content, search and select filter functionalities
     displayContent() {
-       const content = new DisplayContent(this._recipesDatas, this._recipesDatas)
-       content.displayContent()
+       new DisplayContent(this._recipesDatas, this._recipesDatas).displayContent()
     }
-
 
     // Filters functionnalities
     runFilters() {
-        const filters = new Filters()
-        filters.run()
-
-        // const searchFilter = new SearchFilter(this._recipesDatas)
-        // searchFilter.run()
-
-        // const selectFilter = new SelectFilter(this._recipesDatas)
-        // selectFilter.run()
+        new Filters().run()
     }
 
     // Search bar functionnality
     runSearchBar() {
-        const searchBar = new SearchBar(this._recipesDatas)
-        searchBar.run()
+        new SearchBar(this._recipesDatas).run()
     }
 
     // run
@@ -47,8 +36,7 @@ class RecipesPage {
 }
 
 function init() {
-    const recipesPage = new RecipesPage()
-    recipesPage.run()
+     new RecipesPage().run()
 }
 
 init()

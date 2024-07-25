@@ -30,7 +30,7 @@ class LabelTag {
 class SearchLabel extends LabelTag {
 
     labelClass() {
-        return "rounded-6 h-53 px-20"
+        return "main-label rounded-6 h-53 px-20"
     }
 
     spanClass() {

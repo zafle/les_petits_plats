@@ -3,7 +3,7 @@ class Label {
      *
      * @param {Array} allRecipes RecipeData Objects
      * @param {String} name is request or filter tag name to display as label's text and data-name
-     * @param {String} type for data-type (search_bar or filter)
+     * @param {String} type for data-search-type (search_bar or filter)
      * @param {String} filter for data-filter (name of filter - ingredient... - or null)
      * @param {String} destination to determine if label is to be displayed in label section or in filters dropdown
      *
@@ -15,7 +15,8 @@ class Label {
         this._filter = filter
         this._destination = destination
 
-        this.Label = {}
+        this.$label = {}
+        this.$labelWrapper = {}
 
         this.$labelsList = document.querySelector(".search-labels__list")
 
@@ -24,78 +25,81 @@ class Label {
         this.$ustensils = document.querySelector(".filters-labels__list--ustensils")
     }
 
+    // --- Display label ---
+
     displayLabel() {
         // label to display in labels
         if (this._destination === "labels") {
-            this.Label = this.displayInLabels()
+            this.$labelWrapper = this.$labelsList
 
+            if (this._type === "search_bar") {
+                this.removeOtherLabel()
+            }
 
         // label to display in filters
-        } else {
-            this.Label = this.displayInFilters()
+        } else if (this._destination === "filters"){
 
+            this.$labelWrapper = this[`$${this._filter}`]
+            this.displayFilterLabelsWrapper()
         }
+        // create label with LabelFactory
+        this.$label = this.createLabel()
+        // Append label in its wrapper
+        this.$labelWrapper.append(this.$label)
+
 
         this.onRemoveLabel()
     }
 
-    displayInLabels() {
+    removeOtherLabel() {
         // remove search bar query label if exists (must be only one)
         const searchBarLabel = document.querySelector("[data-search-type='search_bar']")
         if (searchBarLabel) {
             searchBarLabel.remove()
         }
-        // create label with LabelFactory
-        const searchLabel = this.createLabel()
-        // Append label in labels section
-        this.$labelsList.append(searchLabel)
-        return searchLabel
     }
 
-    displayInFilters() {
+    displayFilterLabelsWrapper() {
          // display filter label wrapper
-        const labelWrapper = document.querySelector(`.filters-labels[data-label="${this._filter}"]`)
-        if (labelWrapper.classList.contains("d-none")) {
-            labelWrapper.classList.remove("d-none")
+        if (this.$labelWrapper.classList.contains("d-none")) {
+            this.$labelWrapper.classList.remove("d-none")
         }
-        // create label with LabelFactory
-        const filterLabel = this.createLabel()
-        // Append Label in filter dropdown
-        this[`$${this._filter}`].append(filterLabel)
-        return filterLabel
     }
-
 
     createLabel() {
         const newLabel = new LabelFactory(this._name, this._type, this._filter, this._destination).createLabel()
         return newLabel.createLabelTag()
     }
 
-
+    // --- Remove Label ---
     onRemoveLabel() {
+        const closeButton = this.$label.querySelector(".close-label")
+        closeButton.addEventListener("click", () => {
 
-    }
+            const name = this.$label.dataset.labelName
+            this.$label.remove()
 
-    filterRecipesByLabels(recipes) {
-        console.log("fired")
-        //  build array of labels objects with type and name keys
-        const allSearchLabels = document.querySelectorAll("[data-search-type]")
-        const labelsArray = Array.from(allSearchLabels)
-        console.log(labelsArray)
-        const labelsMap = labelsArray.map((label) => {
-            const rObj = {}
-            rObj["filter"] = label.dataset.searchType
-            rObj["request"] = label.dataset.labelName
+            if (this._type === "filter") {
+                this.removeTwinLabel(name)
+            }
+            if (this._destination === "filters") {
+                this.hideFilterWrapper()
+            }
 
-            console.log(rObj)
-            return rObj
+            new SearchLabels(this._allRecipes).searchAllLabels()
         })
-
-        // new search from labels list
-        const result = new Search()
-        const filteredRecipes = result.searchByLabel(labelsMap, recipes)
-
-        return filteredRecipes
     }
 
+    removeTwinLabel(name) {
+        // remove the corresponding filter label from labels section
+        const twinLabel = document.querySelector(`[data-label-name="${name}"]`)
+        twinLabel.remove()
+    }
+
+    hideFilterWrapper() {
+        // hide filter wrapper if empty
+        if (!this.$labelWrapper.hasChildNodes()) {
+            this.$labelWrapper.classList.add("d-none")
+        }
+    }
 }

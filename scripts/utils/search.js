@@ -3,17 +3,23 @@ class Search {
     static removeAccent(string) {
         return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     }
+    static removeFirstLastSpaces(string) {
+        return string.replace(/^\s|\s$/g, '')
+    }
+
+    static removeBrackets(string) {
+        return string.replace(/[()]/g, '')
+    }
 
     static testRequest(request, property) {
 
-        // remove accents
+        request =this.removeFirstLastSpaces(request)
         request = this.removeAccent(request)
+        request = this.removeBrackets(request)
         property = this.removeAccent(property)
+        property = this.removeBrackets(property)
 
-        // test regex : without final s, with an additionnal final s, case insensitive
-
-        // const pattern = new RegExp(`\\b${request}?(?:s)?\\b`, "i") ---- pour mot entier != groupe de lettres
-        const pattern = new RegExp(`${request}(?:s)?`, "i")
+        const pattern = new RegExp(`${request}`, "i")
         return pattern.test(property)
     }
 
@@ -69,18 +75,36 @@ class Search {
     // old name : fireSearchTag
     static searchTagFilter(request, tagsArray) {
 
-        const filteredTags = []
+        // const filteredTags = []
 
         for (let item of tagsArray) {
-           let tag = item.innerText
 
-            if ( this.searchRequest(request, tag) ) {
-                filteredTags.push(item)
+            item.classList.remove("d-none")
+
+            let tag = item.innerText
+
+            if ( !this.searchRequest(request, tag) ) {
+
+                item.classList.add("d-none")
             }
         }
 
-        return filteredTags
+        // return filteredTags
     }
+    // static searchTagFilter(request, tagsArray) {
+
+    //     const filteredTags = []
+
+    //     for (let item of tagsArray) {
+    //        let tag = item.innerText
+
+    //         if ( this.searchRequest(request, tag) ) {
+    //             filteredTags.push(item)
+    //         }
+    //     }
+
+    //     return filteredTags
+    // }
 
     // old name : fireFilterRecipes
     static filterRecipes(request, filter, recipes) {
@@ -99,31 +123,35 @@ class Search {
         return filteredRecipes
     }
 
-    static  searchByLabel(labelsArray, recipes) {
-        console.log("searchby label fired")
+    static searchByLabel(labelsArray, recipes) {
 
         // to store final result
-        const finalRecipes = []
+        let finalRecipes = []
 
         // to store result after each loop
-        const filteredRecipes = []
+        let filteredRecipes = []
 
         // to store recipes that have to be filtered in the loop
-        const recipesToFilter = recipes
+        let recipesToFilter = recipes
 
         for (let label of labelsArray) {
 
-            const type = label["filter"]
+            const filter = label["filter"]
+
             const request = label["request"]
 
-            if (type === "search_bar") {
-                filteredRecipes = this.fire(request, recipesToFilter)
+            if (filter === "null") {
+                filteredRecipes = this.searchBarRequest(request, recipesToFilter)
+
             } else {
-                filteredRecipes = this.fireFilterRecipes(request, type, recipesToFilter)
+                filteredRecipes = this.filterRecipes(request, filter, recipesToFilter)
             }
 
             recipesToFilter = filteredRecipes
         }
+
+        finalRecipes = filteredRecipes
+
 
         return finalRecipes
     }

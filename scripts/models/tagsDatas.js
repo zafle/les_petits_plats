@@ -1,6 +1,7 @@
 class TagsDatas {
     /** Constructor pattern to log tags'datas from all recipes
      *
+     * @param {Array} recipes RecipeData Objects
      */
     constructor(recipes) {
         this._recipes = recipes
@@ -22,23 +23,11 @@ class TagsDatas {
         return this._ustensilsTags
     }
 
-    checkTagExists(tag, array) {
-        let tagExists = false
-        if (array.length) {
-            for (let item of array) {
-                if (item.toLowerCase() === tag.toLowerCase()) {
-                    tagExists = true
-                    break
-                }
-            }
-        }
-        if (tagExists === false) {
-            array.push(tag)
-        }
-    }
-
+    // build an array of tags for each filter
     createTagsArrays() {
+
         this._recipes.forEach(recipe => {
+
             recipe.ingredientsTags.forEach(ingredient => {
                 this.checkTagExists(ingredient, this._ingredientsTags)
             })
@@ -51,10 +40,27 @@ class TagsDatas {
         })
     }
 
-    // createTags() {
-    //     this.createArrays()
-    //     // this.createUniquesTagsArrays()
-    // }
+    checkTagExists(tag, array) {
+        /** return only uniques tags
+         *
+         * @param {string} tag recipe property to test
+         * @param {Array} array array of tags to create
+         */
 
+        let tagExists = false
 
+        // for each first iteration of the createTagsArrays() loop, the array is empty => array.length === 0
+        if (array.length) {
+            // for each item of the array, check if the tag already exists
+            for (let item of array) {
+                if (item.toLowerCase() === tag.toLowerCase()) {
+                    tagExists = true
+                    break
+                }
+            }
+        }
+        if (tagExists === false) {
+            array.push(tag)
+        }
+    }
 }

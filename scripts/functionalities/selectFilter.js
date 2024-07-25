@@ -4,15 +4,13 @@ class SelectFilter {
         this._allRecipes = allRecipes
         this._displayedRecipes = filteredRecipes
 
-        console.log("selectFilter")
-        console.log("allRecipes")
-        console.log(allRecipes)
-        console.log("filteredRecipes")
-        console.log(filteredRecipes)
-
-
         // this.$filtersButtons = document.querySelectorAll(".filters__header")
         // this.$filtersInputs = document.querySelectorAll(".filters__search__input")
+
+        // filters
+        this.$ingredients_Input = document.querySelector(".filters__search__input[name='ingredients']")
+        this.$appliances_Input = document.querySelector(".filters__search__input[name='appliances']")
+        this.$ustensils_Input = document.querySelector(".filters__search__input[name='ustensils']")
 
         this.$ingredients_Wrapper = document.querySelector(".filters__tags--ingredients")
         this.$appliances_Wrapper = document.querySelector(".filters__tags--appliances")
@@ -22,7 +20,11 @@ class SelectFilter {
         this.$appliances_Labels = document.querySelector(".filters-labels__list--appliances")
         this.$ustensils_Labels = document.querySelector(".filters-labels__list--ustensils")
 
+        // labels
         this.$labelsList = document.querySelector(".search-labels__list")
+
+        // search bar
+        this.$searchBarInput = document.querySelector(".main-header__search-input")
 
         // Recipes wrapper
         // this.$recipesCardsWrapper = document.querySelector(".recipes__cards-wrapper")
@@ -39,19 +41,42 @@ class SelectFilter {
                 const type = e.target.dataset.tagType
                 const filter = e.target.dataset.filter
                 this.applyFilter(request, type, filter)
-                this.removeFilter(request, filter)
+                this.removeLabeledFilters()
+                this.clearFilterInput(filter)
+                // clear search bar input => if add new filter = search bar request is over
+                this.clearSearchBarInput()
+                // effacer message d'erreur
             })
         })
     }
 
-    // remove filter from list
-    removeFilter(request, filter) {
-        const filters = this[`$${filter}_Wrapper`].childNodes
-        for (let element of filters) {
-            if (element.innerText === request) {
-                element.remove()
-                break
+    removeLabeledFilters() {
+        const allLabels = GetLabels.getLabelsArray()
+        allLabels.forEach(label => {
+            const filter = label["filter"]
+            const request = label["request"]
+            console.log(request)
+            // if label is not from search bar
+            if (filter !== "null") {
+                // remove filter that matches label
+                document.querySelector(`.filter__tag[data-tag-name="${request}"]`).remove()
             }
+        })
+    }
+
+    clearFilterInput(filter) {
+        if (this[`$${filter}_Input`].value !== "") {
+            this[`$${filter}_Input`].value = ""
+        }
+    }
+
+    clearSearchBarInput() {
+        if (this.$searchBarInput.value !== "") {
+            this.$searchBarInput.value = ""
+        }
+        if (this.$searchBarInput.dataset.request !== "dead") {
+            // add data-request to inform that the search is finished
+            this.$searchBarInput.dataset.request = "dead"
         }
     }
 
@@ -61,14 +86,9 @@ class SelectFilter {
         const filteredRecipes = Search.filterRecipes(request, filter, this._displayedRecipes)
 
         // update content
-        const updateContent = new DisplayContent(this._allRecipes, filteredRecipes)
-        updateContent.updateContent()
+        new DisplayContent(this._allRecipes, filteredRecipes).updateContent()
 
-        // log new array of recipes datas
-        // this._displayedRecipes = filteredRecipes
-
-        // add event listebners on filters tags
-        // this.onClickTag()
+        // remove labels that are in filters
 
         // display label
         this.displayLabels(this._allRecipes, request, type, filter)
@@ -92,50 +112,9 @@ class SelectFilter {
         } catch (error) {
             console.error(`Unknown destination`, error)
         }
-
-    }
-
-            // display filter label
-            // const filterLabel = SearchLabel.createFilterLabel(request, "filter", filter)
-            // const wrapper = this[`$${filter}_Labels`]
-            // wrapper.append(filterLabel)
-
-            // // display search labels
-            // const searchLabel = SearchLabel.createSearchLabel(request, filter)
-            // this.$labelsList.append(searchLabel)
-
-            // // add event listener on close buttons labels
-            // const closeButtonFL = filterLabel.querySelector(".close-label")
-            // this.onCloseLabel(closeButtonFL, filterLabel, wrapper)
-
-            // const closeButtonSL = searchLabel.querySelector(".close-label")
-            // this.onCloseLabel(closeButtonSL, searchLabel)
-
-
-
-    // event listener on close button label
-    onCloseLabel(closeButton, label, wrapper) {
-
-        closeButton.addEventListener("click", (e) => {
-
-            // remove label
-            label.remove()
-
-            // if filter and filter wrapper has no other label, hide wrapper
-            if (!wrapper.querySelector(".filters-labels__list").hasChildNodes()) {
-                wrapper.classList.add("d-none")
-            }
-
-            // get new recipes from new array of filters
-            const filteredRecipes = SearchLabel.filterRecipesByLabels(this._allRecipes)
-            this.updateContent(filteredRecipes)
-        })
     }
 
     run() {
         this.onClickTag()
     }
-
-
-
 }

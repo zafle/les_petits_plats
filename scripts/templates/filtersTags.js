@@ -22,6 +22,8 @@ class FiltersTags {
             $tagItem.setAttribute("href", "#")
             $tagItem.dataset.tagType = "filter"
             $tagItem.dataset.filter = filter
+            // remove brackets from data-tag-name
+            $tagItem.dataset.tagName = tag.replace(/[()]/g, '')
             $tagItem.classList.add("filter__tag", "list-group-item", "border-0", "py-0", "fs-2", "text-dark", "bg-transparent")
             $tagItem.innerText = tag
 

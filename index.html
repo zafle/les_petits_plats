@@ -19,8 +19,8 @@
                 <h1 class="main-header__title font-title fs-6 mw-700 mx-auto mt-170 text-primary text-uppercase text-center lh-base">
                     Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses
                 </h1>
-                <form class="main-header__search-bar mw-955 h-72 mx-auto d-flex justify-content-end align-items-center bg-white rounded-6 p-10 mt-30 w-100">
-                        <input type="text" class="main-header__search-input flex-fill border-0 ps-25 text-secondary cursor-pointer ol-0-focus-visible" id="recipe-search" name="recipe-query" placeholder="Rechercher une recette, un ingrédient, ...">
+                <form autocomplete="off" class="main-header__search-bar mw-955 h-72 mx-auto d-flex justify-content-end align-items-center bg-white rounded-6 p-10 mt-30 w-100">
+                        <input type="text" data-request="alive" class="main-header__search-input flex-fill border-0 ps-25 text-secondary cursor-pointer ol-0-focus-visible" id="recipe-search" name="recipe-query" placeholder="Rechercher une recette, un ingrédient, ...">
                         <img class="main-header__close-search w-13 h-13 me-3 p-0 cursor-pointer d-none" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
                         <input type="image" class="main-header__search-button w-52 h-52 bg-dark bg-primary-hover rounded-6 p-12" alt="search" src="assets/images/magnifier-white.png">
                 </form>
@@ -30,7 +30,7 @@
             <div class="container-fluid px-78 pt-20 pb-200 bg-custom">
                 <section class="filters position-relative pb-30 px-4 clearfix">
                     <div class="float-end">
-                        <h2 class="filters__main-title font-title" id="recipes_amount">1500 recettes</h2>
+                        <h2 class="filters__main-title font-title"><span id="recipes_amount"></span> recettes</h2>
                     </div>
                     <div class="filters__list d-flex justify-content-between gap-65 position-absolute z-1">
 
@@ -48,8 +48,8 @@
                                         <img class="filters__search__icon w-14 cursor-pointer" src="assets/images/magnifier-grey.png" alt="search ingredient" title="Rechercher">
                                     </div>
                                 </div>
-                                <div class="filters-labels filters-labels--ingredients mb-20 d-none" data-label="ingredients">
-                                    <ul class="filters-labels__list filters-labels__list--ingredients list-group list-group-flush"></ul>
+                                <div class="filters-labels filters-labels--ingredients" data-label="ingredients">
+                                    <ul class="filters-labels__list filters-labels__list--ingredients list-group list-group-flush mb-20 d-none"></ul>
                                 </div>
                                 <div class="filters__tags filters__tags--ingredients list-group list-group-flush mh-203 gap-11 overflow-scroll hidden-scrollbar"></div>
                             </div>
@@ -69,8 +69,8 @@
                                         <img class="filters__search__icon w-14 cursor-pointer" src="assets/images/magnifier-grey.png" alt="search ingredient" title="Rechercher">
                                     </div>
                                 </div>
-                                <div class="filters-labels filters-labels--appliances mb-20 d-none" data-label="appliances">
-                                    <ul class="filters-labels__list filters-labels__list--appliances list-group list-group-flush"></ul>
+                                <div class="filters-labels filters-labels--appliances" data-label="appliances">
+                                    <ul class="filters-labels__list filters-labels__list--appliances list-group list-group-flush mb-20 d-none"></ul>
                                 </div>
                                 <div class="filters__tags filters__tags--appliances list-group list-group-flush h-203 gap-11 overflow-scroll hidden-scrollbar"></div>
                             </div>
@@ -90,8 +90,8 @@
                                         <img class="filters__search__icon w-14 cursor-pointer" src="assets/images/magnifier-grey.png" alt="search ingredient" title="Rechercher">
                                     </div>
                                 </div>
-                                <div class="filters-labels filters-labels--ustensils mb-20 d-none" data-label="ustensils">
-                                    <ul class="filters-labels__list filters-labels__list--ustensils list-group list-group-flush"></ul>
+                                <div class="filters-labels filters-labels--ustensils" data-label="ustensils">
+                                    <ul class="filters-labels__list filters-labels__list--ustensils list-group list-group-flush mb-20 d-none"></ul>
                                 </div>
                                 <div class="filters__tags filters__tags--ustensils list-group list-group-flush h-203 gap-11 overflow-scroll hidden-scrollbar"></div>
                             </div>
@@ -129,11 +129,12 @@
     <script src="scripts/components/label.js"></script>
     <!-- Functionalities -->
      <script src="scripts/functionalities/searchBarRequest.js"></script>
-     <script src="scripts/functionalities/searchFilter.js"></script>
      <script src="scripts/functionalities/selectFilter.js"></script>
+     <script src="scripts/functionalities/searchLabels.js"></script>
     <!-- Utils -->
     <script src="scripts/utils/displayContent.js"></script>
     <script src="scripts/utils/secureRequest.js"></script>
+    <script src="scripts/utils/getLabels.js"></script>
     <script src="scripts/utils/search.js"></script>
     <!-- Pages -->
     <script src="scripts/pages/index.js"></script>

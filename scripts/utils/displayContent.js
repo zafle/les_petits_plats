@@ -1,8 +1,8 @@
 class DisplayContent {
     /** Display content for filters and recipes
      *
-     * @param {Array} allRecipes RecipeData Objects
-     * @param {Array} filteredRecipes RecipeData Objects
+     * @param {Array} allRecipes RecipeData Objects --- to display all recipes when needed
+     * @param {Array} filteredRecipes RecipeData Objects --- to display a filtered array of recipes
      *
      */
     constructor(allRecipes, filteredRecipes) {
@@ -26,18 +26,24 @@ class DisplayContent {
         this.$recipesAmount = document.getElementById("recipes_amount")
     }
 
-    // --- create Tags datas ---
+    // --- create arrays of tags from RecipeData objects ---
     createTagsDatas() {
         const tagsDatas = new TagsDatas(this._filteredRecipes)
         tagsDatas.createTagsArrays()
         this._tagsDatas = tagsDatas
     }
 
-    // display Filters tags ---
+    // --- display Filters tags ---
     displayFilters() {
+        // instantiate new FiltersTags Template from the TagsDatas constructor
         const filtersTags = new FiltersTags(this._tagsDatas)
+
         this._filters.forEach(filter => {
+
+            // create an array of filters tags for each filter
             const tags = filtersTags.createTags(filter)
+
+            // append each filter tag to its HTML wrapper
             tags.forEach(tag => {
                 this[`$${filter}Tags`].append(tag)
             })
@@ -46,6 +52,7 @@ class DisplayContent {
 
     //  --- recipes ---
     displayRecipes() {
+        // create a template for each recipe card and append it to recipes section
         this._filteredRecipes.forEach(recipe => {
             const Template = new RecipeCard(recipe)
             this.$recipesCardsWrapper.append(Template.createRecipeCard())
@@ -54,21 +61,16 @@ class DisplayContent {
 
     // --- recipes amount ---
     displayAmount() {
-        // get 2 digits min number
+        // get 2 digits min number from the total amount of recipes tha are being displayed
         const nbRecipes = new Intl.NumberFormat(undefined, { minimumIntegerDigits: 2 }).format(this._filteredRecipes.length)
-        this.$recipesAmount.innerText = `${nbRecipes} recettes`
+        // update the total number of recipes
+        this.$recipesAmount.innerText = nbRecipes
     }
 
-    // launch functionalities with new recipes and tags datas
+    // launch functionalities for new recipes and new filters
     launchFunctionalities() {
-        const searchFilter = new SearchFilter()
-        searchFilter.run()
-
-        const selectFilter = new SelectFilter(this._allRecipes, this._filteredRecipes)
-        selectFilter.run()
-
-        const searchBarRequest = new SearchBarRequest(this._allRecipes, this._filteredRecipes)
-        searchBarRequest.run()
+        // new SearchFilter().onSearchTagRequest()
+        new SelectFilter(this._allRecipes, this._filteredRecipes).run()
     }
 
     // clear recipe section and filters
@@ -76,7 +78,6 @@ class DisplayContent {
         this.$recipesCardsWrapper.innerHTML = ''
         this.$filtersTags.forEach(filter => filter.innerHTML = "")
     }
-
 
     displayContent() {
         this.createTagsDatas()
@@ -90,5 +91,4 @@ class DisplayContent {
         this.clearContent()
         this.displayContent()
     }
-
 }

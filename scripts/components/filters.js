@@ -6,9 +6,11 @@ class Filters {
     constructor() {
         // Filters HTML Elements
         this.$filtersButtons = document.querySelectorAll(".filters__header")
+        this.$filtersInputs = document.querySelectorAll(".filters__search__input")
+
 
     }
-    // open filter event
+    // --- open filter event ---
     openFilter() {
         this.$filtersButtons.forEach(button => {
             button.addEventListener("click", (e) => {
@@ -19,8 +21,44 @@ class Filters {
         })
     }
 
+    // --- search filter tag ---
+    onSearchTagRequest() {
+
+        this.$filtersInputs.forEach(input => {
+
+            input.addEventListener("input", (e) => {
+
+                console.log("search request")
+
+                // secure request
+                const request = SecureRequest.secure(e.target.value)
+                // get type of tag's array
+                const tagType = e.target.name
+
+                this.searchTag(request, tagType)
+            })
+        })
+    }
+
+    searchTag(request, tagType) {
+        // get HTML elements tags array from type
+        const tagsArray = document.querySelectorAll(`.filter__tag[data-filter="${tagType}"]`)
+
+        if (request.length) {
+            // Execute search (will add class "d-none" to all tags that don't match search)
+            Search.searchTagFilter(request, tagsArray)
+
+        } else {
+            // display all tags
+            tagsArray.forEach(tag => {
+                tag.classList.remove("d-none")
+            })
+        }
+    }
+
     run() {
         this.openFilter()
+        this.onSearchTagRequest()
     }
 
 
