@@ -15,11 +15,10 @@ class GetLabels {
                 // will return filter's name or null if search bar filter
                 rObj["filter"] = label.dataset.filter
                 // will return request
-                rObj["request"] = label.dataset.labelName.replace(/[()]/g, '')
+                rObj["request"] = CustomString.removeBrackets(label.dataset.labelName)
 
                 return rObj
             })
-            console.log(labelsArray)
             return labelsArray
 
         // if no label, return null
