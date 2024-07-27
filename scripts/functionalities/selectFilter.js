@@ -25,6 +25,7 @@ class SelectFilter {
 
         // search bar
         this.$searchBarInput = document.querySelector(".main-header__search-input")
+        this.$closeBarButton = document.querySelector(".main-header__close-search")
 
         // Recipes wrapper
         // this.$recipesCardsWrapper = document.querySelector(".recipes__cards-wrapper")
@@ -71,6 +72,7 @@ class SelectFilter {
     }
 
     clearSearchBarInput() {
+        this.$closeBarButton.classList.add("d-none")
         if (this.$searchBarInput.value !== "") {
             this.$searchBarInput.value = ""
         }
@@ -83,7 +85,7 @@ class SelectFilter {
     applyFilter(request, type, filter) {
 
         // filter recipes
-        const filteredRecipes = Search.filterRecipes(request, filter, this._displayedRecipes)
+        const filteredRecipes = Search.searchByFilter(request, filter, this._displayedRecipes)
 
         // update content
         new DisplayContent(this._allRecipes, filteredRecipes).updateContent()

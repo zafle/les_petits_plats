@@ -20,7 +20,9 @@
                     Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses
                 </h1>
                 <form autocomplete="off" class="main-header__search-bar mw-955 h-72 mx-auto d-flex justify-content-end align-items-center bg-white rounded-6 p-10 mt-30 w-100">
-                        <input type="text" data-request="alive" class="main-header__search-input flex-fill border-0 ps-25 text-secondary cursor-pointer ol-0-focus-visible" id="recipe-search" name="recipe-query" placeholder="Rechercher une recette, un ingrédient, ...">
+                        <div class="main-header__search-input__container flex-fill align-self-start autocomplete position-relative d-flex h-52">
+                            <input type="text" id="recipe-search" data-request="alive" class="main-header__search-input flex-fill border-0 ps-25 text-secondary cursor-pointer ol-0-focus-visible" name="recipe-query" placeholder="Rechercher une recette, un ingrédient, ...">
+                        </div>
                         <img class="main-header__close-search w-13 h-13 me-3 p-0 cursor-pointer d-none" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
                         <input type="image" class="main-header__search-button w-52 h-52 bg-dark bg-primary-hover rounded-6 p-12" alt="search" src="assets/images/magnifier-white.png">
                 </form>
@@ -117,6 +119,7 @@
     <script src="scripts/models/recipeData.js"></script>
     <script src="scripts/models/ingredientsData.js"></script>
     <script src="scripts/models/tagsDatas.js"></script>
+    <script src="scripts/models/autocompleteDatas.js"></script>
     <!-- Factory -->
     <script src="scripts/factories/labelFactory.js"></script>
     <!-- Templates -->
@@ -133,9 +136,10 @@
      <script src="scripts/functionalities/searchLabels.js"></script>
     <!-- Utils -->
     <script src="scripts/utils/displayContent.js"></script>
-    <script src="scripts/utils/secureRequest.js"></script>
+    <script src="scripts/utils/customString.js"></script>
     <script src="scripts/utils/getLabels.js"></script>
     <script src="scripts/utils/search.js"></script>
+    <script src="scripts/utils/autocomplete.js"></script>
     <!-- Pages -->
     <script src="scripts/pages/index.js"></script>
 </body>

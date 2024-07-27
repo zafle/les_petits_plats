@@ -28,9 +28,8 @@ class DisplayContent {
 
     // --- create arrays of tags from RecipeData objects ---
     createTagsDatas() {
-        const tagsDatas = new TagsDatas(this._filteredRecipes)
-        tagsDatas.createTagsArrays()
-        this._tagsDatas = tagsDatas
+        this._tagsDatas = new TagsDatas(this._filteredRecipes)
+        this._tagsDatas.createTagsArrays()
     }
 
     // --- display Filters tags ---

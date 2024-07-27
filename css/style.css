@@ -8332,6 +8332,10 @@ textarea.form-control-lg {
   top: 100% !important;
 }
 
+.top-52 {
+  top: 52px !important;
+}
+
 .bottom-0 {
   bottom: 0 !important;
 }
@@ -8342,6 +8346,10 @@ textarea.form-control-lg {
 
 .bottom-100 {
   bottom: 100% !important;
+}
+
+.bottom-52 {
+  bottom: 52px !important;
 }
 
 .start-0 {
@@ -8356,6 +8364,10 @@ textarea.form-control-lg {
   left: 100% !important;
 }
 
+.start-52 {
+  left: 52px !important;
+}
+
 .end-0 {
   right: 0 !important;
 }
@@ -8366,6 +8378,10 @@ textarea.form-control-lg {
 
 .end-100 {
   right: 100% !important;
+}
+
+.end-52 {
+  right: 52px !important;
 }
 
 .translate-middle {

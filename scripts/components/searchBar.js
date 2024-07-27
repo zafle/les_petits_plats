@@ -1,5 +1,5 @@
 class SearchBar {
-    constructor(recipes) {
+    constructor(recipes, autocomplete) {
 
         // necessaire ?
         this._recipes = recipes
@@ -11,8 +11,6 @@ class SearchBar {
 
         // recipe section
         this.$noRecipe = document.querySelector(".norecipe")
-        // this.$recipesAmount = document.getElementById("recipes_amount")
-        // this.$recipesCardsWrapper = document.querySelector(".recipes__cards-wrapper")
 
         // filter tags
         this.$filtersTags = document.querySelectorAll(".filters__tags")
@@ -21,8 +19,14 @@ class SearchBar {
         this.$labelsList = document.querySelector(".search-labels__list")
 
         //  search request
-        this.SearchBar = new SearchBarRequest(this._recipes)
+        this.SearchBarRequest = new SearchBarRequest(this._recipes)
+        this.Autocomplete = {}
+    }
 
+    // --- autocomplete ---
+    createAutocomplete() {
+        this.Autocomplete = new Autocomplete(this._recipes)
+        this.Autocomplete.run()
     }
 
     //  --- bar event listeners ---
@@ -35,19 +39,20 @@ class SearchBar {
         })
     }
 
-
     onCloseSearch() {
         this.$closeButton.addEventListener("click", () => {
-            this.SearchBar.closeSearch()
+            this.SearchBarRequest.resetSearch()
+            this.SearchBarRequest.clearSearchInput()
+            this.$closeButton.classList.add("d-none")
         })
     }
 
     onSearchBarRequest() {
         this.$searchInput.addEventListener("input", (e) => {
             e.preventDefault()
-
-            let request = SecureRequest.secure(e.target.value)
-            this.SearchBar.searchBarRequest(request)
+            this.$closeButton.classList.remove("d-none")
+            let request = CustomString.secure(e.target.value)
+            this.SearchBarRequest.customRequest(request)
         })
     }
 
@@ -57,11 +62,9 @@ class SearchBar {
         })
     }
 
-
-
-
     // run
     run() {
+        this.createAutocomplete()
         this.onButtonHover()
         this.onCloseSearch()
         this.onSearchBarRequest()

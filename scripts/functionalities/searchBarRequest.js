@@ -5,9 +5,7 @@ class SearchBarRequest {
      *
      */
     constructor(recipes) {
-        // this._recipes = recipes
         this._allRecipes = recipes
-        this._displayedRecipes = recipes
 
         // search bar
         this.$button = document.querySelector(".main-header__search-button")
@@ -28,144 +26,123 @@ class SearchBarRequest {
     }
 
     // --- search bar events ---
-    searchBarRequest(request) {
-        console.log(request.length)
-
-        //  check if the search has to be reset (remove all labels and update content befor search)
-        console.log("this.$searchInput.dataset.request")
-        console.log(this.$searchInput.dataset.request)
-
-        if (this.$searchInput.dataset.request === "dead") {
-            this.startNewSearch()
-        }
-
-
+    customRequest(request) {
 
         if (request.length > 2) {
-            this.sendRequest(request)
+            this.sendRequest(request, null)
 
+        // if user erase caracters and request is null
         } else if (request.length === 0) {
-            // if user erase caracters and request is null
-            // if all recipes are not displayed, display all recipes --- reset search
-            // if (this._displayedRecipes.length !== this._allRecipes.length) {
-                console.log("updated reset")
-                this.clearSearchInput()
-                this.clearLabels()
-                this.clearNoRequestFound()
-                this.updateContent(this._allRecipes)
-            // }
+            // if all recipes are not displayed, display all recipes --- reset recipes and search
+            if (parseInt(this.$recipesAmount) !== this._allRecipes.length) {
+                this.resetSearch()
+            }
         }
-
     }
 
-    startNewSearch() {
-        this.clearLabels()
-        this.updateContent(this._allRecipes)
-        this.$searchInput.dataset.request = "alive"
-    }
+    sendRequest(request, filter) {
 
-    // onSubmitRequestButton() {
-    //     this.$button.addEventListener("click", (e) => {
-    //         e.preventDefault()
-    //     })
-    // }
+        // this.$closeButton.classList.remove("d-none")
 
-    closeSearch() {
-        this.$closeButton.addEventListener("click", () => {
-            this.clearSearchInput()
-            this.clearLabels()
-            this.clearNoRequestFound()
-            this.updateContent(this._allRecipes)
-            // this.resetSearch()
-        })
-    }
+        // remove labels if some labels are displayed
+        this.checkIfNewSearch()
 
-    // --- actions on search request ---
-
-    sendRequest(request) {
-
-        // add condition here
-        this.$closeButton.classList.remove("d-none")
-
-        // send search request into displayed recipes only
-        const filteredRecipes = Search.searchBarRequest(request, this._allRecipes)
-
-        // console.log("send request has been done and :")
-        // console.log("filteredRecipes")
-        // console.log(filteredRecipes)
-        // console.log("this._displayedRecipes")
-        // console.log(this._displayedRecipes)
+        const filteredRecipes = this.searchFunction(request, filter)
 
         // if request found no recipes, display no recipe message
         if (filteredRecipes.length === 0) {
             this.displayNoRequestFound(request)
 
-        // if request found recipes
-
-        //  check if
-
-        // check if number of filtered recipes are equal to displayed recipes
-        //  if not equal
-        // } else if (filteredRecipes.length !== this._displayedRecipes.length) {
         } else {
-            // console.log("filterde recipes are not equal to displayed ones, then update is done")
-            this.clearNoRequestFound()
-            this.updateContent(filteredRecipes)
-            this.displayLabel(this._allRecipes, request, "search_bar", null)
+            // display filtered recipes
+            this.displayNewContent(filteredRecipes, request)
         }
-
-        // if equal
-        // } else {
-        //     console.log("update label")
-        //     this.displayLabel(this._allRecipes, request, "search_bar", null)
-
-        // }
     }
 
+    searchFunction(request, filter) {
+        if (filter === null) {
+            const filteredRecipes = Search.searchByRequest(request, this._allRecipes)
+            return filteredRecipes
+        } else {
+            const filteredRecipes = Search.searchByFilter(request, filter, this._allRecipes)
+            return filteredRecipes
+        }
+    }
 
-    // --- display  ---
+    // --- if new search ---
+
+    checkIfNewSearch() {
+        if (this.$searchInput.dataset.request === "dead") {
+            this.startNewSearch()
+        }
+    }
+
+    startNewSearch() {
+        this.clearLabels()
+        this.$searchInput.dataset.request = "alive"
+    }
+
+    // --- display content ---
+
     updateContent(recipes) {
         // display recipes and filters
         new DisplayContent(this._allRecipes, recipes).updateContent()
-        // update displayed recipes
-        // this._displayedRecipes = recipes
-        // console.log("this._displayedRecipes updated")
-        // console.log("this._displayedRecipes :")
-        // console.log(this._displayedRecipes)
-        // console.log("should be equal to :")
-        // console.log(recipes)
     }
+
+    // --- update on request found ---
+
+    displayNewContent(filteredRecipes, request) {
+        this.clearNoRequestFound()
+        this.updateContent(filteredRecipes)
+        this.displayLabel(request)
+    }
+
+    // --- clear content ---
 
     clearSearchInput()  {
         this.$searchInput.value = ""
+    }
+
+    removeCloseButton() {
         this.$closeButton.classList.add("d-none")
     }
 
-    // resetSearch() {
-    //     this.$closeButton.classList.add("d-none")
-    //     this.clearLabels()
-    //     this.updateContent(this._allRecipes)
-    // }
+    resetSearch() {
+        this.removeCloseButton()
+        this.clearLabels()
+        this.clearNoRequestFound()
+        this.updateContent(this._allRecipes)
+    }
+
+    // --- Request not found ---
 
     displayNoRequestFound(request) {
         // Remove recipes and tags
         this.$recipesCardsWrapper.innerHTML = ''
         this.$filtersTags.forEach(filter => filter.innerHTML = "")
         // Display content
-        this.$recipesAmount.innerText = `0 recettes`
+        this.$recipesAmount.innerText = `0`
         this.$noRecipe.innerText = `Aucune recette ne contient "${request}", vous pouvez chercher "Tarte aux Pommes", "Poisson", etc.`
         // clear labels
         this.clearLabels()
-        this._displayedRecipes = this._allRecipes
     }
 
     clearNoRequestFound() {
         this.$noRecipe.innerText = ""
     }
 
+    // --- Labels ---
 
+    displayLabel(request) {
+        try {
+            const destination = "labels"
+            new Label(this._allRecipes, request, "search_bar", null, destination).displayLabel()
 
-    // --- Label ---
+        } catch (error) {
+            console.error(`Unknown destination`, error)
+        }
+    }
+
     clearLabels() {
         this.$labelsList.innerHTML = ""
         this.$filtersLabelsLists.forEach(list => {
@@ -173,23 +150,4 @@ class SearchBarRequest {
             list.classList.add("d-none")
         })
     }
-
-    displayLabel(allRecipes, request, type, filter) {
-        try {
-            const destination = "labels"
-            new Label(allRecipes, request, type, filter, destination).displayLabel()
-
-        } catch (error) {
-            console.error(`Unknown destination`, error)
-        }
-    }
-
-
-
-    // run
-    // run() {
-    //     this.onSearchBarRequest()
-    //     this.onCloseRequest()
-    //     this.onSubmitRequestButton()
-    // }
 }

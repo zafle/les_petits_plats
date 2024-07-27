@@ -28,10 +28,8 @@ class Filters {
 
             input.addEventListener("input", (e) => {
 
-                console.log("search request")
-
                 // secure request
-                const request = SecureRequest.secure(e.target.value)
+                const request = CustomString.secure(e.target.value)
                 // get type of tag's array
                 const tagType = e.target.name
 

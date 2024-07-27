@@ -1,29 +1,18 @@
 class Search {
 
-    static removeAccent(string) {
-        return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    }
-    static removeFirstLastSpaces(string) {
-        return string.replace(/^\s|\s$/g, '')
-    }
-
-    static removeBrackets(string) {
-        return string.replace(/[()]/g, '')
+    static simplifyString(string) {
+        return CustomString.simplify(string)
     }
 
     static testRequest(request, property) {
-
-        request =this.removeFirstLastSpaces(request)
-        request = this.removeAccent(request)
-        request = this.removeBrackets(request)
-        property = this.removeAccent(property)
-        property = this.removeBrackets(property)
+        request = this.simplifyString(request)
+        property = this.simplifyString(property)
 
         const pattern = new RegExp(`${request}`, "i")
         return pattern.test(property)
     }
 
-    static  searchRequest(request, property) {
+    static searchRequest(request, property) {
 
         let requestFound = false
 
@@ -36,19 +25,17 @@ class Search {
         } else if (typeof property === "object" ) {
 
             for (let element of property) {
-
                 requestFound = this.testRequest(request, element)
                 if (requestFound === true) {
                     break
                 }
             }
         }
-
         return requestFound
     }
 
     // old name : fire
-    static searchBarRequest(request, recipes) {
+    static searchByRequest(request, recipes) {
 
         const filteredRecipes = []
 
@@ -67,7 +54,6 @@ class Search {
                 filteredRecipes.push(recipe)
             }
         }
-
         return filteredRecipes
     }
 
@@ -75,39 +61,19 @@ class Search {
     // old name : fireSearchTag
     static searchTagFilter(request, tagsArray) {
 
-        // const filteredTags = []
-
         for (let item of tagsArray) {
 
             item.classList.remove("d-none")
 
             let tag = item.innerText
-
             if ( !this.searchRequest(request, tag) ) {
-
                 item.classList.add("d-none")
             }
         }
-
-        // return filteredTags
     }
-    // static searchTagFilter(request, tagsArray) {
-
-    //     const filteredTags = []
-
-    //     for (let item of tagsArray) {
-    //        let tag = item.innerText
-
-    //         if ( this.searchRequest(request, tag) ) {
-    //             filteredTags.push(item)
-    //         }
-    //     }
-
-    //     return filteredTags
-    // }
 
     // old name : fireFilterRecipes
-    static filterRecipes(request, filter, recipes) {
+    static searchByFilter(request, filter, recipes) {
 
         const filteredRecipes = []
 
@@ -119,7 +85,6 @@ class Search {
                 filteredRecipes.push(recipe)
             }
         }
-
         return filteredRecipes
     }
 
@@ -127,33 +92,24 @@ class Search {
 
         // to store final result
         let finalRecipes = []
-
         // to store result after each loop
         let filteredRecipes = []
-
         // to store recipes that have to be filtered in the loop
         let recipesToFilter = recipes
 
         for (let label of labelsArray) {
 
             const filter = label["filter"]
-
             const request = label["request"]
 
             if (filter === "null") {
-                filteredRecipes = this.searchBarRequest(request, recipesToFilter)
-
+                filteredRecipes = this.searchByRequest(request, recipesToFilter)
             } else {
                 filteredRecipes = this.filterRecipes(request, filter, recipesToFilter)
             }
-
             recipesToFilter = filteredRecipes
         }
-
         finalRecipes = filteredRecipes
-
-
         return finalRecipes
     }
-
 }
