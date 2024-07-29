@@ -22,6 +22,21 @@ $utilities: map-merge(
   )
 );
 
+// create min-width
+$utilities: map-merge(
+  $utilities,
+  (
+    "min-width": (
+      property: min-width,
+      class: min-w,
+      responsive: true,
+      values: (
+        195: 195px,
+      ),
+    )
+  )
+);
+
 // add max-height
 $utilities: map-merge(
   $utilities,
@@ -265,6 +280,21 @@ $utilities: map-merge(
       responsive: true,
       values: (
         contain: contain,
+      ),
+    )
+  )
+);
+
+// create text-overflow
+$utilities: map-merge(
+  $utilities,
+  (
+    "text-overflow": (
+      property: text-overflow,
+      class: text-overflow,
+      responsive: true,
+      values: (
+        ellipsis: ellipsis,
       ),
     )
   )

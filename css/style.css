@@ -5951,7 +5951,7 @@ textarea.form-control-lg {
   --bs-list-group-action-active-bg: var(--bs-secondary-bg);
   --bs-list-group-disabled-color: var(--bs-secondary-color);
   --bs-list-group-disabled-bg: var(--bs-body-bg);
-  --bs-list-group-active-color: #fff;
+  --bs-list-group-active-color: #1B1B1B;
   --bs-list-group-active-bg: #FFD15B;
   --bs-list-group-active-border-color: #FFD15B;
   display: flex;
@@ -11749,6 +11749,10 @@ textarea.form-control-lg {
   z-index: 3 !important;
 }
 
+.min-w-195 {
+  min-width: 195px !important;
+}
+
 .ol-0 {
   outline: none !important;
 }
@@ -11779,6 +11783,10 @@ textarea.form-control-lg {
 
 .overscroll-b-contain {
   overscroll-behavior: contain !important;
+}
+
+.text-overflow-ellipsis {
+  text-overflow: ellipsis !important;
 }
 
 @media (min-width: 576px) {
@@ -13430,6 +13438,9 @@ textarea.form-control-lg {
   .text-sm-center {
     text-align: center !important;
   }
+  .min-w-sm-195 {
+    min-width: 195px !important;
+  }
   .cursor-sm-auto {
     cursor: auto !important;
   }
@@ -13447,6 +13458,9 @@ textarea.form-control-lg {
   }
   .overscroll-b-sm-contain {
     overscroll-behavior: contain !important;
+  }
+  .text-overflow-sm-ellipsis {
+    text-overflow: ellipsis !important;
   }
 }
 @media (min-width: 768px) {
@@ -15098,6 +15112,9 @@ textarea.form-control-lg {
   .text-md-center {
     text-align: center !important;
   }
+  .min-w-md-195 {
+    min-width: 195px !important;
+  }
   .cursor-md-auto {
     cursor: auto !important;
   }
@@ -15115,6 +15132,9 @@ textarea.form-control-lg {
   }
   .overscroll-b-md-contain {
     overscroll-behavior: contain !important;
+  }
+  .text-overflow-md-ellipsis {
+    text-overflow: ellipsis !important;
   }
 }
 @media (min-width: 992px) {
@@ -16766,6 +16786,9 @@ textarea.form-control-lg {
   .text-lg-center {
     text-align: center !important;
   }
+  .min-w-lg-195 {
+    min-width: 195px !important;
+  }
   .cursor-lg-auto {
     cursor: auto !important;
   }
@@ -16783,6 +16806,9 @@ textarea.form-control-lg {
   }
   .overscroll-b-lg-contain {
     overscroll-behavior: contain !important;
+  }
+  .text-overflow-lg-ellipsis {
+    text-overflow: ellipsis !important;
   }
 }
 @media (min-width: 1200px) {
@@ -18434,6 +18460,9 @@ textarea.form-control-lg {
   .text-xl-center {
     text-align: center !important;
   }
+  .min-w-xl-195 {
+    min-width: 195px !important;
+  }
   .cursor-xl-auto {
     cursor: auto !important;
   }
@@ -18451,6 +18480,9 @@ textarea.form-control-lg {
   }
   .overscroll-b-xl-contain {
     overscroll-behavior: contain !important;
+  }
+  .text-overflow-xl-ellipsis {
+    text-overflow: ellipsis !important;
   }
 }
 @media (min-width: 1400px) {
@@ -20102,6 +20134,9 @@ textarea.form-control-lg {
   .text-xxl-center {
     text-align: center !important;
   }
+  .min-w-xxl-195 {
+    min-width: 195px !important;
+  }
   .cursor-xxl-auto {
     cursor: auto !important;
   }
@@ -20119,6 +20154,9 @@ textarea.form-control-lg {
   }
   .overscroll-b-xxl-contain {
     overscroll-behavior: contain !important;
+  }
+  .text-overflow-xxl-ellipsis {
+    text-overflow: ellipsis !important;
   }
 }
 @media (min-width: 1200px) {

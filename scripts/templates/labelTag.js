@@ -30,11 +30,11 @@ class LabelTag {
 class SearchLabel extends LabelTag {
 
     labelClass() {
-        return "main-label rounded-6 h-53 px-20"
+        return "main-label rounded-6 h-53 px-20 min-w-195 me-2"
     }
 
     spanClass() {
-        return "me-60"
+        return "me-20"
     }
 
     buttonClass() {
@@ -54,11 +54,11 @@ class FilterLabel extends LabelTag {
     }
 
     spanClass() {
-        return "filter__close-filter-label"
+        return "text-overflow-ellipsis overflow-hidden text-nowrap"
     }
 
     buttonClass() {
-        return "w-17 h-17"
+        return "w-17 h-17 d-none"
     }
 
     srcImg() {

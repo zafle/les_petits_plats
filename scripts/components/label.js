@@ -48,6 +48,7 @@ class Label {
         this.$labelWrapper.append(this.$label)
 
 
+        this.onHoverLabel()
         this.onRemoveLabel()
     }
 
@@ -69,6 +70,16 @@ class Label {
     createLabel() {
         const newLabel = new LabelFactory(this._name, this._type, this._filter, this._destination).createLabel()
         return newLabel.createLabelTag()
+    }
+
+    // --- hover label ---
+    onHoverLabel() {
+        this.$label.addEventListener("mouseover", (e) => {
+            this.$label.querySelector(".close-label").classList.remove("d-none")
+        })
+        this.$label.addEventListener("mouseout", (e) => {
+            this.$label.querySelector(".close-label").classList.add("d-none")
+        })
     }
 
     // --- Remove Label ---
