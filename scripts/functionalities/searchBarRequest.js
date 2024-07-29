@@ -122,7 +122,7 @@ class SearchBarRequest {
         this.$filtersTags.forEach(filter => filter.innerHTML = "")
         // Display content
         this.$recipesAmount.innerText = `0`
-        this.$noRecipe.innerText = `Aucune recette ne contient "${request}", vous pouvez chercher "Tarte aux Pommes", "Poisson", etc.`
+        this.$noRecipe.innerHTML = `Aucune recette ne contient <strong>"${request}"</strong>, vous pouvez chercher "Tarte aux Pommes", "Poisson", etc.`
         // clear labels
         this.clearLabels()
     }

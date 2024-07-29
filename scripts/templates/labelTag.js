@@ -54,7 +54,7 @@ class FilterLabel extends LabelTag {
     }
 
     spanClass() {
-        return ""
+        return "filter__close-filter-label"
     }
 
     buttonClass() {

@@ -32,7 +32,9 @@ $utilities: map-merge(
         values: map-merge(
           map-get(map-get($utilities, "max-height"), "values"),
           (
+            0: 0,
           203: 203px,
+          271: 271px
           ),
         ),
       ),
@@ -238,21 +240,6 @@ $utilities: map-merge(
   )
 );
 
-// create animate height
-$utilities: map-merge(
-  $utilities,
-  (
-    "animate-height": (
-      property: height,
-      class: animate-height,
-      responsive: true,
-      values: (
-        auto: auto,
-      ),
-    )
-  )
-);
-
 // create transform scale
 $utilities: map-merge(
   $utilities,
@@ -263,6 +250,21 @@ $utilities: map-merge(
       responsive: true,
       values: (
         vmirror: scale(1, -1),
+      ),
+    )
+  )
+);
+
+// create overscroll-behavior
+$utilities: map-merge(
+  $utilities,
+  (
+    "overscroll-behavior": (
+      property: overscroll-behavior,
+      class: overscroll-b,
+      responsive: true,
+      values: (
+        contain: contain,
       ),
     )
   )

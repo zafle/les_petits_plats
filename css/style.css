@@ -8734,8 +8734,16 @@ textarea.form-control-lg {
   max-height: 100% !important;
 }
 
+.mh-0 {
+  max-height: 0 !important;
+}
+
 .mh-203 {
   max-height: 203px !important;
+}
+
+.mh-271 {
+  max-height: 271px !important;
 }
 
 .vh-100 {
@@ -11765,12 +11773,12 @@ textarea.form-control-lg {
   transition: all 300ms ease-out !important;
 }
 
-.animate-height-auto {
-  height: auto !important;
-}
-
 .transform-scale-vmirror {
   transform: scale(1, -1) !important;
+}
+
+.overscroll-b-contain {
+  overscroll-behavior: contain !important;
 }
 
 @media (min-width: 576px) {
@@ -13434,11 +13442,11 @@ textarea.form-control-lg {
   .transition-sm-easeout {
     transition: all 300ms ease-out !important;
   }
-  .animate-height-sm-auto {
-    height: auto !important;
-  }
   .transform-scale-sm-vmirror {
     transform: scale(1, -1) !important;
+  }
+  .overscroll-b-sm-contain {
+    overscroll-behavior: contain !important;
   }
 }
 @media (min-width: 768px) {
@@ -15102,11 +15110,11 @@ textarea.form-control-lg {
   .transition-md-easeout {
     transition: all 300ms ease-out !important;
   }
-  .animate-height-md-auto {
-    height: auto !important;
-  }
   .transform-scale-md-vmirror {
     transform: scale(1, -1) !important;
+  }
+  .overscroll-b-md-contain {
+    overscroll-behavior: contain !important;
   }
 }
 @media (min-width: 992px) {
@@ -16770,11 +16778,11 @@ textarea.form-control-lg {
   .transition-lg-easeout {
     transition: all 300ms ease-out !important;
   }
-  .animate-height-lg-auto {
-    height: auto !important;
-  }
   .transform-scale-lg-vmirror {
     transform: scale(1, -1) !important;
+  }
+  .overscroll-b-lg-contain {
+    overscroll-behavior: contain !important;
   }
 }
 @media (min-width: 1200px) {
@@ -18438,11 +18446,11 @@ textarea.form-control-lg {
   .transition-xl-easeout {
     transition: all 300ms ease-out !important;
   }
-  .animate-height-xl-auto {
-    height: auto !important;
-  }
   .transform-scale-xl-vmirror {
     transform: scale(1, -1) !important;
+  }
+  .overscroll-b-xl-contain {
+    overscroll-behavior: contain !important;
   }
 }
 @media (min-width: 1400px) {
@@ -20106,11 +20114,11 @@ textarea.form-control-lg {
   .transition-xxl-easeout {
     transition: all 300ms ease-out !important;
   }
-  .animate-height-xxl-auto {
-    height: auto !important;
-  }
   .transform-scale-xxl-vmirror {
     transform: scale(1, -1) !important;
+  }
+  .overscroll-b-xxl-contain {
+    overscroll-behavior: contain !important;
   }
 }
 @media (min-width: 1200px) {

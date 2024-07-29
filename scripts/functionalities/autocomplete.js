@@ -119,10 +119,15 @@ class Autocomplete {
 
     closeAllLists(elmnt) {
         /*close all autocomplete lists in the document,
-        except the one passed as an argument:*/
+        except the one passed as an argument = clicked element:*/
+
+        // select all autocomplete lists
         const items = document.getElementsByClassName("autocomplete-items")
+        // for each list
         for (let item of items) {
+            // if clicked element is not a list or main search input
             if (elmnt !== item && elmnt !== this.$searchInput) {
+                // remove the list
                 item.parentNode.removeChild(item)
             }
         }
