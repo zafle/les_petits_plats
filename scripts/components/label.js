@@ -74,12 +74,16 @@ class Label {
 
     // --- hover label ---
     onHoverLabel() {
-        this.$label.addEventListener("mouseover", (e) => {
-            this.$label.querySelector(".close-label").classList.remove("d-none")
-        })
-        this.$label.addEventListener("mouseout", (e) => {
-            this.$label.querySelector(".close-label").classList.add("d-none")
-        })
+        const closeFilterLabelButton = this.$label.querySelector(".close-filter-label")
+        if (closeFilterLabelButton) {
+            this.$label.addEventListener("mouseover", () => {
+                closeFilterLabelButton.classList.remove("d-none")
+            })
+            this.$label.addEventListener("mouseout", (e) => {
+                closeFilterLabelButton.classList.add("d-none")
+            })
+
+        }
     }
 
     // --- Remove Label ---

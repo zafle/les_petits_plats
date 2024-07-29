@@ -105,7 +105,7 @@ class Search {
             if (filter === "null") {
                 filteredRecipes = this.searchByRequest(request, recipesToFilter)
             } else {
-                filteredRecipes = this.filterRecipes(request, filter, recipesToFilter)
+                filteredRecipes = this.searchByFilter(request, filter, recipesToFilter)
             }
             recipesToFilter = filteredRecipes
         }

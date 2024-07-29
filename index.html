@@ -12,8 +12,8 @@
 </head>
 <body>
     <div class="container-fluid mw-1440 p-0">
-        <header class="main-header position-relative h-667">
-            <img src="assets/images/header-image.jpg" alt="assiette et baguettes chinoises">
+        <header class="main-header position-relative h-667 overflow-hidden">
+            <img class="object-fit-cover object-position-right obj" src="assets/images/header-image.jpg" alt="assiette et baguettes chinoises">
             <div class="card-img-overlay px-70 py-50">
                 <img class="main-header__logo w-207" src="assets/images/logo.png" alt="Les petits plats">
                 <h1 class="main-header__title font-title fs-6 mw-700 mx-auto mt-170 text-primary text-uppercase text-center lh-base">
@@ -21,7 +21,7 @@
                 </h1>
                 <form autocomplete="off" class="main-header__search-bar mw-955 h-72 mx-auto d-flex justify-content-end align-items-center bg-white rounded-6 p-10 mt-30 w-100">
                         <div class="main-header__search-input__container flex-fill align-self-start autocomplete position-relative d-flex h-52">
-                            <input type="text" id="recipe-search" data-request="alive" class="main-header__search-input flex-fill border-0 ps-25 text-secondary cursor-pointer ol-0-focus-visible" name="recipe-query" placeholder="Rechercher une recette, un ingrédient, ...">
+                            <input type="text" id="recipe-search" data-request="alive" class="main-header__search-input flex-fill w-100 border-0 ps-25 text-secondary cursor-pointer ol-0-focus-visible text-overflow-ellipsis overflow-hidden text-nowrap" name="recipe-query" placeholder="Rechercher une recette, un ingrédient, ...">
                         </div>
                         <img class="main-header__close-search w-13 h-13 me-3 p-0 cursor-pointer d-none" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
                         <input type="image" class="main-header__search-button w-52 h-52 bg-dark bg-primary-hover rounded-6 p-12" alt="search" src="assets/images/magnifier-white.png">
@@ -29,21 +29,23 @@
             </div>
         </header>
         <main>
-            <div class="container-fluid px-78 pt-20 pb-200 bg-custom">
-                <section class="filters position-relative pb-30 px-4 clearfix">
-                    <div class="float-end">
-                        <h2 class="filters__main-title font-title"><span id="recipes_amount"></span> recettes</h2>
+            <div class="container-fluid px-xxl-78 pt-20 pb-200 bg-custom">
+                <section class="filters d-flex justify-content-between flex-wrap gap-20 px-sm-4 h-56 mb-sm-20 mb-50 overflow-visible z-1 position-relative">
+
+                    <div class="order-sm-1">
+                        <h2 class="filters__main-title font-title m-0 pt-md-10 pt-1 fs-5"><span id="recipes_amount"></span> recettes</h2>
                     </div>
-                    <div class="filters__list d-flex justify-content-between gap-65 position-absolute z-1">
+
+                    <div class="filters__list d-flex justify-content-start gap-lg-65 gap-10 z-1 pe-none">
 
                         <!-- Ingredients -->
-                        <div class="filters__item w-195 flex-shrink-0">
-                            <button class="filters__header w-100 btn bg-white p-3 text-dark fw-semibold fs-3 d-flex justify-content-between align-items-center border-0" data-filter="ingredients">
+                        <div class="filters__item w-lg-195 w-md-150 w-105 flex-shrink-0">
+                            <button class="filters__header w-100 btn bg-white p-md-3 p-2 text-dark fw-semibold fs-md-3 fs-1 d-flex justify-content-between align-items-center border-0 pe-auto" data-filter="ingredients">
                                 Ingrédients
-                                <img class="filters__open w-13 pe-none transition-easeout" src="assets/images/open.png" alt="open filter">
+                                <img class="filters__open w-lg-13 w-10 pe-none transition-easeout" src="assets/images/open.png" alt="open filter">
                             </button>
                             <div class="filters__dropdown bg-white w-100 mh-0 mt-negative pt-12 rounded-bottom rounded-6 transition-easeout overflow-hidden" data-filter="ingredients">
-                                <div class="px-3 mb-20">
+                                <div class="px-md-3 px-2 mb-20">
                                     <div class="filters__search d-flex justify-content-between align-items-center flex-nowrap border border-1 border-light rounded-7 h-36 p-2">
                                         <input class="filters__search__input flex-fill w-50 border-0 fs-2 text-secondary ol-0-focus-visible" type="text" name="ingredients">
                                         <img class="filters__close-search w-26 h-26 p-10 cursor-pointer d-none" data-close-filter="ingredients" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
@@ -58,13 +60,13 @@
                         </div>
 
                         <!-- Appliances -->
-                        <div class="filters__item w-195 flex-shrink-0">
-                            <button class="filters__header w-100 btn bg-white p-3 text-dark fw-semibold fs-3 d-flex justify-content-between align-items-center border-0" data-filter="appliances">
+                        <div class="filters__item w-lg-195 w-md-150 w-105 flex-shrink-0">
+                            <button class="filters__header w-100 btn bg-white p-md-3 p-2 text-dark fw-semibold fs-md-3 fs-1 d-flex justify-content-between align-items-center border-0 pe-auto" data-filter="appliances">
                                 Appareils
-                                <img class="filters__open w-13 pe-none transition-easeout" src="assets/images/open.png" alt="open filter">
+                                <img class="filters__open w-lg-13 w-10 pe-none transition-easeout" src="assets/images/open.png" alt="open filter">
                             </button>
                             <div class="filters__dropdown bg-white w-100 mh-0 mt-negative pt-12 rounded-bottom rounded-6 transition-easeout overflow-hidden" data-filter="appliances">
-                                <div class="px-3 mb-20">
+                                <div class="px-md-3 px-2 mb-20">
                                     <div class="filters__search d-flex justify-content-between align-items-center flex-nowrap border border-1 border-light rounded-7 h-36 p-2">
                                         <input class="filters__search__input flex-fill w-50 border-0 fs-2 text-secondary ol-0-focus-visible" type="text" name="appliances">
                                         <img class="filters__close-search w-26 h-26 p-10 cursor-pointer d-none" data-close-filter="appliances" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
@@ -79,13 +81,13 @@
                         </div>
 
                         <!-- Ustensils -->
-                        <div class="filters__item w-195 flex-shrink-0">
-                            <button class="filters__header w-100 btn bg-white p-3 text-dark fw-semibold fs-3 d-flex justify-content-between align-items-center border-0" data-filter="ustensils">
+                        <div class="filters__item w-lg-195 w-md-150 w-105 flex-shrink-0">
+                            <button class="filters__header w-100 btn bg-white p-md-3 p-2 text-dark fw-semibold fs-md-3 fs-1 d-flex justify-content-between align-items-center border-0 pe-auto" data-filter="ustensils">
                                 Ustensiles
-                                <img class="filters__open w-13 pe-none transition-easeout" src="assets/images/open.png" alt="open filter">
+                                <img class="filters__open w-lg-13 w-10 pe-none transition-easeout" src="assets/images/open.png" alt="open filter">
                             </button>
                             <div class="filters__dropdown bg-white w-100 mh-0 mt-negative pt-12 rounded-bottom rounded-6 transition-easeout overflow-hidden" data-filter="ustensils">
-                                <div class="px-3 mb-20">
+                                <div class="px-md-3 px-2 mb-20">
                                     <div class="filters__search d-flex justify-content-between align-items-center flex-nowrap border border-1 border-light rounded-7 h-36 p-2">
                                         <input class="filters__search__input flex-fill w-50 border-0 fs-2 text-secondary ol-0-focus-visible" type="text" name="ustensils">
                                         <img class="filters__close-search w-26 h-26 p-10 cursor-pointer d-none" data-close-filter="ustensils" src="assets/images/close.png" alt="close search" title="Effacer la recherche">
@@ -103,11 +105,11 @@
 
                 </section>
                 <section class="search-labels px-4">
-                    <ul class="search-labels__list d-flex m-0 p-0"></ul>
+                    <ul class="search-labels__list d-flex flex-wrap m-0 p-0"></ul>
                 </section>
                 <section class="recipes">
-                    <p class="fs-4 mt-20 text-center norecipe"></p>
-                    <div class="row row-cols-3 gx-48 gy-65 w-100 m-0 recipes__cards-wrapper"></div>
+                    <p class="fs-4 m-0 text-center norecipe"></p>
+                    <div class="row row-cols-xl-3 row-cols-md-2 row-cols-1 gx-sm-48 gx-20 gy-sm-65 gy-20 w-100 m-0 recipes__cards-wrapper"></div>
                 </section>
             </div>
         </main>

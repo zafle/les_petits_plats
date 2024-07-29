@@ -14,7 +14,7 @@ class LabelTag {
         label.classList.add("d-flex", "justify-content-between", "align-items-center", "bg-primary")
         label.classList.add(...this.labelClass().split(' '))
         label.innerHTML = `
-            <span class="${this.spanClass()} text-black fs-2">${this._name}</span>
+            <span class="${this.spanClass()} text-black fs-md-2 fs-1">${this._name}</span>
         `
         const closeButton = document.createElement("img")
         closeButton.classList.add("close-label", "cursor-pointer")
@@ -30,7 +30,7 @@ class LabelTag {
 class SearchLabel extends LabelTag {
 
     labelClass() {
-        return "main-label rounded-6 h-53 px-20 min-w-195 me-2"
+        return "main-label rounded-6 h-53 px-20 min-w-195 me-2 mb-10"
     }
 
     spanClass() {
@@ -50,7 +50,7 @@ class SearchLabel extends LabelTag {
 class FilterLabel extends LabelTag {
 
     labelClass() {
-        return "filter-label h-37 mb-6 px-3 py-10"
+        return "filter-label h-37 mb-6 px-md-3 px-2 py-10"
     }
 
     spanClass() {
@@ -58,7 +58,7 @@ class FilterLabel extends LabelTag {
     }
 
     buttonClass() {
-        return "w-17 h-17 d-none"
+        return "w-17 h-17 d-none close-filter-label"
     }
 
     srcImg() {

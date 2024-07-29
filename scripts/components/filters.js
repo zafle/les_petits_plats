@@ -40,6 +40,7 @@ class Filters {
         const button = document.querySelector(`.filters__header[data-filter="${filter}"]`)
         dropdown.classList.toggle("mh-0")
         dropdown.classList.toggle("mh-100")
+        dropdown.classList.toggle("pe-auto")
         button.firstElementChild.classList.toggle("transform-scale-vmirror")
     }
 

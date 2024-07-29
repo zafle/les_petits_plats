@@ -24,7 +24,7 @@ class FiltersTags {
             $tagItem.dataset.filter = filter
             // remove brackets from data-tag-name
             $tagItem.dataset.tagName = CustomString.removeBrackets(tag)
-            $tagItem.classList.add("filter__tag", "list-group-item", "border-0", "py-0", "fs-2", "text-dark", "bg-transparent")
+            $tagItem.classList.add("filter__tag", "list-group-item", "border-0", "py-0", "px-sm-3", "px-2", "fs-sm-2", "fs-1", "text-dark", "bg-transparent")
             $tagItem.innerText = tag
 
             tagItems.push($tagItem)
