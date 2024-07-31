@@ -1,3 +1,4 @@
+/* global CustomString Search */
 class Filters {
     /** Manage filters component and events listeners
      *

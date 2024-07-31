@@ -18,5 +18,10 @@
   "homepage": "https://github.com/zafle/les_petits_plats#readme",
   "dependencies": {
     "bootstrap": "^5.3.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "eslint": "^9.8.0",
+    "globals": "^15.8.0"
   }
 }
