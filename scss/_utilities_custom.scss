@@ -230,6 +230,24 @@ $utilities: map-merge(
   )
 );
 
+// add margin-top
+$utilities: map-merge(
+  $utilities,
+  (
+    "margin-top": map-merge(
+      map-get($utilities, "margin-top"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "margin-top"), "values"),
+          (
+            neg-12: -0.75em
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
 
 // create outline focus visible
 $utilities: map-merge(
