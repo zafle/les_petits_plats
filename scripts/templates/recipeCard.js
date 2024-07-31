@@ -17,7 +17,7 @@ class RecipeCard {
         this._ingredients.forEach(ingredient => {
             const li =  `
                 <li class="ingredient__item ">
-                    <p class="ingredient__name fs-2 fw-medium text-dark mb-0">${ingredient.name}</p>
+                    <p class="ingredient__name fs-2 fw-semibold text-black mb-0">${ingredient.name}</p>
                     <p class="ingredient__quantity fs-2 text-secondary mb-0">${ingredient.quantity}</p>
                 </li>
             `
@@ -41,10 +41,10 @@ class RecipeCard {
 
                 <div class="card-body pt-30 px-25 pb-60">
                     <h2 class="recipe__name card-title fs-4 text-black mb-30 font-title">${this._recipe.name}</h2>
-                    <h3 class="recipe__subtitle card-subtitle fs-1 text-secondary fw-bold text-uppercase mb-15">Recette</h3>
-                    <p class="recipe__recipe card-text lh-sm h-76 fs-2 overflow-hidden text-dark">${this._recipe.description}</p>
-                    <h3 class="recipe__subtitle card-subtitle fs-1 text-secondary fw-bold text-uppercase mb-15">Ingrédients</h3>
-                    <ul class="ingredient__list list-unstyled row row-cols-2 gx-30 gy-20 mb-0">
+                    <h3 class="recipe__subtitle card-subtitle fs-1 text-secondary fw-bold text-uppercase mb-15 letter-spacing-1">Recette</h3>
+                    <p class="recipe__recipe card-text lh-sm h-76 mb-30 fs-2 overflow-hidden text-dark">${this._recipe.description}</p>
+                    <h3 class="recipe__subtitle card-subtitle fs-1 text-secondary fw-bold text-uppercase mb-15 letter-spacing-1">Ingrédients</h3>
+                    <ul class="ingredient__list list-unstyled row row-cols-2 g-20 mb-0">
                         ${this.createRecipeIngredientsList()}
                     </ul>
                 </div>

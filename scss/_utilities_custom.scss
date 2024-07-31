@@ -24,7 +24,6 @@ $utilities: map-merge(
         values: map-merge(
           map-get(map-get($utilities, "max-width"), "values"),
           (
-            428: 428px,
             700: 700px,
             955: 955px,
             1440: 1440px
@@ -45,10 +44,11 @@ $utilities: map-merge(
         values: map-merge(
           map-get(map-get($utilities, "width"), "values"),
           (
-            6: 6px,
             10: 10px,
+            12: 12px,
             13: 13px,
             14: 14px,
+            19: 19px,
             26: 26px,
             52: 52px,
             63: 63px,
@@ -56,7 +56,6 @@ $utilities: map-merge(
             150: 150px,
             195: 195px,
             207: 207px,
-            380: 380px,
           ),
         ),
       ),
@@ -84,7 +83,7 @@ $utilities: map-merge(
       class: min-w,
       responsive: true,
       values: (
-        195: 195px,
+        140: 140px,
       ),
     )
   )
@@ -102,7 +101,6 @@ $utilities: map-merge(
           (
             0: 0,
           203: 203px,
-          271: 271px
           ),
         ),
       ),
@@ -120,11 +118,8 @@ $utilities: map-merge(
         values: map-merge(
           map-get(map-get($utilities, "height"), "values"),
           (
-            0: 0px,
-            6: 6px,
             10: 10px,
             13: 13px,
-            17: 17px,
             26: 26px,
             36: 36px,
             37: 37px,
@@ -133,11 +128,8 @@ $utilities: map-merge(
             56: 56px,
             72: 72px,
             76: 76px,
-            96: 96px,
-            203: 203px,
             253: 253px,
             667: 667px,
-            730: 730px
           ),
         ),
       ),
@@ -194,7 +186,6 @@ $utilities: map-merge(
           (
             6: 11px,
             7: 2px,
-            8: 14px,
             9: 21px
           ),
         ),
@@ -239,6 +230,7 @@ $utilities: map-merge(
   )
 );
 
+
 // create outline focus visible
 $utilities: map-merge(
   $utilities,
@@ -261,7 +253,6 @@ $utilities: map-merge(
     "cursor": (
       property: cursor,
       class: cursor,
-      responsive: true,
       values: auto pointer grab,
     )
   )
@@ -274,7 +265,6 @@ $utilities: map-merge(
     "transition": (
       property: transition,
       class: transition,
-      responsive: true,
       values: (
         easeout: all 300ms ease-out,
       ),
@@ -289,7 +279,6 @@ $utilities: map-merge(
     "transform-scale": (
       property: transform,
       class: transform-scale,
-      responsive: true,
       values: (
         vmirror: scale(1, -1),
       ),
@@ -304,7 +293,6 @@ $utilities: map-merge(
     "overscroll-behavior": (
       property: overscroll-behavior,
       class: overscroll-b,
-      responsive: true,
       values: (
         contain: contain,
       ),
@@ -319,7 +307,6 @@ $utilities: map-merge(
     "text-overflow": (
       property: text-overflow,
       class: text-overflow,
-      responsive: true,
       values: (
         ellipsis: ellipsis,
       ),
@@ -334,9 +321,23 @@ $utilities: map-merge(
     "object-position": (
       property: object-position,
       class: object-position,
-      responsive: true,
       values: (
         right: right,
+      ),
+    )
+  )
+);
+
+
+// create letter-spacing
+$utilities: map-merge(
+  $utilities,
+  (
+    "custom-letter-spacing": (
+      property: letter-spacing,
+      class: letter-spacing,
+      values: (
+        1: 0.15em,
       ),
     )
   )

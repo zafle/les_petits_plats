@@ -69,9 +69,11 @@ class Label {
 
             this.$label.addEventListener("mouseover", () => {
                 closeFilterLabelButton.classList.remove("d-none")
+                this.$label.getElementsByTagName("span")[0].classList.add("fw-bold")
             })
             this.$label.addEventListener("mouseout", (e) => {
                 closeFilterLabelButton.classList.add("d-none")
+                this.$label.getElementsByTagName("span")[0].classList.remove("fw-bold")
             })
 
         }

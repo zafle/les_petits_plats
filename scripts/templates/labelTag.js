@@ -44,7 +44,7 @@ class SearchLabel extends LabelTag {
      */
 
     labelClass() {
-        return "main-label rounded-6 h-53 px-20 min-w-195 me-2 mb-10"
+        return "main-label rounded-6 h-53 px-20 min-w-140 me-2 mb-10"
     }
 
     spanClass() {
@@ -52,7 +52,7 @@ class SearchLabel extends LabelTag {
     }
 
     buttonClass() {
-        return "w-10 h-10"
+        return "w-12"
     }
 
     srcImg() {
@@ -74,7 +74,7 @@ class FilterLabel extends LabelTag {
     }
 
     buttonClass() {
-        return "w-17 h-17 d-none close-filter-label"
+        return "w-19 d-none close-filter-label"
     }
 
     srcImg() {
