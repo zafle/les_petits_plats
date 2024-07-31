@@ -22,13 +22,13 @@ class LabelTag {
         label.dataset.labelName = this._name
         label.dataset.filter = this._filter
         label.classList.add("d-flex", "justify-content-between", "align-items-center", "bg-primary")
-        label.classList.add(...this.labelClass().split(' '))
+        label.classList.add(...this.labelClass().split(" "))
         label.innerHTML = `
             <span class="${this.spanClass()} text-black fs-md-2 fs-1">${this._name}</span>
         `
         const closeButton = document.createElement("img")
         closeButton.classList.add("close-label", "cursor-pointer")
-        closeButton.classList.add(...this.buttonClass().split(' '))
+        closeButton.classList.add(...this.buttonClass().split(" "))
         closeButton.setAttribute("src", this.srcImg())
         closeButton.setAttribute("alt", "remove label")
 

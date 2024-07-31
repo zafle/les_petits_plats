@@ -1,3 +1,4 @@
+/* global SearchLabel FilterLabel */
 class LabelFactory {
     /** Factory to instantiate new Label Object
      * instantiate SearchLabel Object (extends Label Object) if label is for labels section
@@ -9,12 +10,14 @@ class LabelFactory {
      * @param {String} destination to determine if label is to be displayed in label section or in filters dropdown
      *
      */
+
     constructor(name, type, filter, destination) {
         this._name = name
         this._type = type
         this._filter = filter
         this._destination = destination
     }
+
     createLabel() {
         switch (this._destination) {
             case "labels" :

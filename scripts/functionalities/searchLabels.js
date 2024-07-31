@@ -1,3 +1,4 @@
+/* global GetLabels DisplayContent Search */
 class SearchLabels {
     /** Functionality to search recipes from all displayed labels
      *

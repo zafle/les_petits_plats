@@ -1,3 +1,5 @@
+/* global Search DisplayContent Label */
+
 class SearchBarRequest {
     /** Search bar request functionality
      *
@@ -143,7 +145,7 @@ class SearchBarRequest {
          */
 
         // Remove recipes and tags
-        this.$recipesCardsWrapper.innerHTML = ''
+        this.$recipesCardsWrapper.innerHTML = ""
         this.$filtersTags.forEach(filter => filter.innerHTML = "")
         // Display content
         this.$recipesAmount.innerText = `0`

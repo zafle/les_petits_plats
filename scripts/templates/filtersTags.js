@@ -1,3 +1,4 @@
+/* global CustomString */
 class FiltersTags {
     /** Template to display filters tags
      *

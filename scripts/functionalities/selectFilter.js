@@ -1,3 +1,4 @@
+/* global GetLabels DisplayContent Search Label */
 class SelectFilter {
     /** Select Filter functionalities
      *

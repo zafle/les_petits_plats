@@ -1,3 +1,4 @@
+/* global CustomString */
 class AutocompleteTags {
     /** Template for autocomplete Tags
      *

@@ -1,3 +1,4 @@
+/* global TagsDatas */
 class AutocompleteDatas {
     /** Select Filter functionalities
      *

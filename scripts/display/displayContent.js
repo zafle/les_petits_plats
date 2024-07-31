@@ -1,3 +1,4 @@
+/* global TagsDatas FiltersTags RecipeCard SelectFilter */
 class DisplayContent {
     /** Display or update content for filters and recipes
      *
@@ -85,7 +86,7 @@ class DisplayContent {
 
     // clear recipe section and filters
     clearContent() {
-        this.$recipesCardsWrapper.innerHTML = ''
+        this.$recipesCardsWrapper.innerHTML = ""
         this.$filtersTags.forEach(filter => filter.innerHTML = "")
     }
 

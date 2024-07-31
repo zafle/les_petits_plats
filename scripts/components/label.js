@@ -1,3 +1,4 @@
+/* global SearchLabels LabelFactory */
 class Label {
     /** Manage all label functionalities and display
      * if label is from filter => display into filter dropdown or display into labels list

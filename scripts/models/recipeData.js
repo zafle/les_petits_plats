@@ -1,3 +1,4 @@
+/* global IngredientData */
 class RecipeData {
     /** Constructor pattern for recipe's datas
      *

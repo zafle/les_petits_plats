@@ -1,3 +1,4 @@
+/* global CustomString */
 class Search {
     /** Functions to execute request search
      *

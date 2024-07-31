@@ -1,3 +1,4 @@
+/* global CustomString */
 class GetLabels {
     /** return all displayed labels array
      *

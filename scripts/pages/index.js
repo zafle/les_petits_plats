@@ -1,3 +1,4 @@
+/* global recipes RecipeData DisplayContent Filters SearchBar*/
 class RecipesPage {
     /** Display homepage and run functionnalities
      *
@@ -13,7 +14,7 @@ class RecipesPage {
 
     // Display content, search and select filter functionalities
     displayContent() {
-       new DisplayContent(this._recipesDatas, this._recipesDatas).displayContent()
+        new DisplayContent(this._recipesDatas, this._recipesDatas).displayContent()
     }
 
     // Filters functionnalities
@@ -36,7 +37,7 @@ class RecipesPage {
 }
 
 function init() {
-     new RecipesPage().run()
+    new RecipesPage().run()
 }
 
 init()

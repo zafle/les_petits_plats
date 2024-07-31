@@ -17,23 +17,23 @@ class CustomString {
 
     static removeUnauthorizedCharacters(string) {
         // keep only authorised caracters : spaces, letters, ', -
-        return string.replace(/[^\x20\x2DA-Za-z\xC0-\xD6\xD8-\xF6\xF8-\xFF']/g, '')
+        return string.replace(/[^\x20\x2DA-Za-z\xC0-\xD6\xD8-\xF6\xF8-\xFF']/g, "")
     }
 
     static removeExtraSpaces(string) {
         // replace multiple spaces, tab, new lines... with single space
-        string = string.replace(/\s\s+/g, ' ')
+        string = string.replace(/\s\s+/g, " ")
         // remove first and last space
-        string = string.replace(/^\s|\s$/g, '')
+        string = string.replace(/^\s|\s$/g, "")
         return string
     }
 
     static removeAccent(string) {
-        return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     }
 
     static removeBrackets(string) {
-        return string.replace(/[()]/g, '')
+        return string.replace(/[()]/g, "")
     }
 
 }

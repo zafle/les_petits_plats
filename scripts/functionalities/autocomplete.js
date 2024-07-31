@@ -1,3 +1,4 @@
+/* global AutocompleteDatas CustomString AutocompleteTags */
 class Autocomplete {
     /** Autocomplete functionnality for search bar request
      *

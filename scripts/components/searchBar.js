@@ -1,3 +1,4 @@
+/* global SearchBarRequest Autocomplete CustomString*/
 class SearchBar {
     /** Manage all search bar functionalities and event listeners
      *
