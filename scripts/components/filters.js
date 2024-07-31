@@ -3,6 +3,7 @@ class Filters {
      *
      *
      */
+
     constructor() {
 
         // Filters HTML Elements
@@ -17,6 +18,9 @@ class Filters {
 
         // search bar
         this.$searchBarInput = document.querySelector(".main-header__search-input")
+
+        // labels
+        this.$labelsSection = document.querySelector(".search-labels")
     }
 
     // --- open / close filter events ---
@@ -61,10 +65,20 @@ class Filters {
         })
     }
 
-    // --- search bar events ---
+    // --- search bar related events ---
 
+    // close filters on click search bar input
     onClickSearchBarInput() {
         this.$searchBarInput.addEventListener("click", () => {
+            this.closeOtherFilters(null)
+        })
+    }
+
+    // --- labels related events ---
+
+    // close filters on remove label in label section
+    onRemoveLabel() {
+        this.$labelsSection.addEventListener("click", () => {
             this.closeOtherFilters(null)
         })
     }
@@ -155,5 +169,6 @@ class Filters {
         this.onSearchTagRequest()
         this.onClickCloseSearchButton()
         this.onClickSearchBarInput()
+        this.onRemoveLabel()
     }
 }
