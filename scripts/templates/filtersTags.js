@@ -4,6 +4,7 @@ class FiltersTags {
      * @param {Array} tagsDatas TagsDatas Objects
      *
      */
+
     constructor(tagsDatas) {
 
         // Arrays of tags
@@ -18,15 +19,19 @@ class FiltersTags {
 
         this[`_${filter}`].forEach(tag => {
 
+            // create tag element
             const $tagItem = document.createElement("a")
             $tagItem.setAttribute("href", "#")
             $tagItem.dataset.tagType = "filter"
             $tagItem.dataset.filter = filter
-            // remove brackets from data-tag-name
+
+            // remove potential brackets from data-tag-name
             $tagItem.dataset.tagName = CustomString.removeBrackets(tag)
+
             $tagItem.classList.add("filter__tag", "list-group-item", "border-0", "py-0", "px-sm-3", "px-2", "fs-sm-2", "fs-1", "text-dark", "bg-transparent")
             $tagItem.innerText = tag
 
+            // push tag in the array
             tagItems.push($tagItem)
         })
 

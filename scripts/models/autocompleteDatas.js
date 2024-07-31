@@ -1,6 +1,15 @@
 class AutocompleteDatas {
+    /** Select Filter functionalities
+     *
+     * @param {Array} recipes RecipeData Objects
+     *
+     */
+
     constructor(recipes) {
         this._recipes = recipes
+
+        this._filters = ["ingredients", "appliances", "ustensils"]
+
         this._autocompleteTags = []
 
         this._ingredientsTags = []
@@ -10,19 +19,18 @@ class AutocompleteDatas {
 
     get autocompleteTags() {
 
+
         const tagsDatas = new TagsDatas(this._recipes)
         tagsDatas.createTagsArrays()
 
-        this._ingredientsTags = tagsDatas._ingredientsTags
-        this._appliancesTags = tagsDatas._appliancesTags
-        this._ustensilsTags = tagsDatas._ustensilsTags
+        let allTags = []
 
-        const ingredients = this.createTagArray(this._ingredientsTags, "ingredients")
-        const appliances = this.createTagArray(this._appliancesTags, "appliances")
-        const ustensils = this.createTagArray(this._ustensilsTags, "ustensils")
+        this._filters.forEach( filter => {
+            this[`_${filter}Tags`] = this.createTagArray(tagsDatas[`_${filter}Tags`], filter)
+            allTags.push(this[`_${filter}Tags`])
+        })
 
-        this._autocompleteTags = ingredients.concat(appliances).concat(ustensils)
-
+        this._autocompleteTags = allTags.flat()
         return this._autocompleteTags
     }
 

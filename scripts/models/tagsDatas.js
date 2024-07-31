@@ -1,5 +1,5 @@
 class TagsDatas {
-    /** Constructor pattern to log tags'datas from all recipes
+    /** Constructor patternfor tags'datas from all recipes
      *
      * @param {Array} recipes RecipeData Objects
      */

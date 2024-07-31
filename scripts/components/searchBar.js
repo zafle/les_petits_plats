@@ -1,8 +1,13 @@
 class SearchBar {
-    constructor(recipes, autocomplete) {
+    /** Manage all search bar functionalities and event listeners
+     *
+     * @param {Array} recipes RecipeData Objects
+     *
+     */
 
-        // necessaire ?
-        this._recipes = recipes
+    constructor(recipes) {
+
+        this._allRecipes = recipes
 
         // search bar
         this.$button = document.querySelector(".main-header__search-button")
@@ -12,20 +17,14 @@ class SearchBar {
         // recipe section
         this.$noRecipe = document.querySelector(".norecipe")
 
-        // filter tags
-        this.$filtersTags = document.querySelectorAll(".filters__tags")
-
-        // labels
-        this.$labelsList = document.querySelector(".search-labels__list")
-
-        //  search request
-        this.SearchBarRequest = new SearchBarRequest(this._recipes)
+        // search request
+        this.SearchBarRequest = new SearchBarRequest(this._allRecipes)
         this.Autocomplete = {}
     }
 
     // --- autocomplete ---
-    createAutocomplete() {
-        this.Autocomplete = new Autocomplete(this._recipes)
+    launchAutocomplete() {
+        this.Autocomplete = new Autocomplete(this._allRecipes, this.SearchBarRequest)
         this.Autocomplete.run()
     }
 
@@ -51,7 +50,9 @@ class SearchBar {
         this.$searchInput.addEventListener("input", (e) => {
             e.preventDefault()
             this.$closeButton.classList.remove("d-none")
+            // secure request
             let request = CustomString.secure(e.target.value)
+            // send request
             this.SearchBarRequest.customRequest(request)
         })
     }
@@ -62,9 +63,8 @@ class SearchBar {
         })
     }
 
-    // run
     run() {
-        this.createAutocomplete()
+        this.launchAutocomplete()
         this.onButtonHover()
         this.onCloseSearch()
         this.onSearchBarRequest()

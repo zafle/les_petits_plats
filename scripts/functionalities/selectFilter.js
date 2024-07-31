@@ -1,11 +1,16 @@
 class SelectFilter {
-    constructor(allRecipes, filteredRecipes) {
+    /** Select Filter functionalities
+     *
+     * @param {Array} allRecipes RecipeData Objects
+     * @param {Array} displayedRecipes RecipeData Objects --- displayed recipes to search within
+     *
+     */
+
+    constructor(allRecipes, displayedRecipes) {
+
         // recipes
         this._allRecipes = allRecipes
-        this._displayedRecipes = filteredRecipes
-
-        // this.$filtersButtons = document.querySelectorAll(".filters__header")
-        // this.$filtersInputs = document.querySelectorAll(".filters__search__input")
+        this._displayedRecipes = displayedRecipes
 
         // filters
         this.$ingredients_Input = document.querySelector(".filters__search__input[name='ingredients']")
@@ -26,78 +31,95 @@ class SelectFilter {
         // search bar
         this.$searchBarInput = document.querySelector(".main-header__search-input")
         this.$closeBarButton = document.querySelector(".main-header__close-search")
-
-        // Recipes wrapper
-        // this.$recipesCardsWrapper = document.querySelector(".recipes__cards-wrapper")
     }
-    // --- click and select tag functions ---
 
-    // event listener
+    // --- click and select filter tag functions ---
+
     onClickTag() {
+
         const tags = document.querySelectorAll(".filter__tag")
+
         tags.forEach(tag => {
             tag.addEventListener("click", (e) => {
                 e.preventDefault()
+
                 const request = e.target.innerText
                 const type = e.target.dataset.tagType
                 const filter = e.target.dataset.filter
+
+                // send request and display result
                 this.applyFilter(request, type, filter)
+                // remove all selected filters tags from all filters list
                 this.removeLabeledFilters()
+                // clear filter search input
                 this.clearFilterInput(filter)
                 // clear search bar input => if add new filter = search bar request is over
                 this.clearSearchBarInput()
-                // effacer message d'erreur
             })
         })
     }
 
     removeLabeledFilters() {
+        // remove all selected filters tags from all filters list
+
+        // get all labels array
         const allLabels = GetLabels.getLabelsArray()
+
+        // for each label, get name and origin (filter)
         allLabels.forEach(label => {
             const filter = label["filter"]
             const request = label["request"]
-            console.log(request)
             // if label is not from search bar
-            if (filter !== "null") {
-                // remove filter that matches label
-                document.querySelector(`.filter__tag[data-tag-name="${request}"]`).remove()
-            }
+            // remove filter tag that matches label
+            if (filter !== "null") document.querySelector(`.filter__tag[data-tag-name="${request}"]`).remove()
         })
     }
 
     clearFilterInput(filter) {
-        if (this[`$${filter}_Input`].value !== "") {
-            this[`$${filter}_Input`].value = ""
-        }
+        /** clear search filter input
+         *
+         * @param {string} filter
+         *
+         */
+
+        if (this[`$${filter}_Input`].value !== "") this[`$${filter}_Input`].value = ""
     }
 
     clearSearchBarInput() {
         this.$closeBarButton.classList.add("d-none")
-        if (this.$searchBarInput.value !== "") {
-            this.$searchBarInput.value = ""
-        }
-        if (this.$searchBarInput.dataset.request !== "dead") {
-            // add data-request to inform that the search is finished
-            this.$searchBarInput.dataset.request = "dead"
-        }
+        if (this.$searchBarInput.value !== "") this.$searchBarInput.value = ""
+        // add data-request to inform that the search is finished
+        if (this.$searchBarInput.dataset.request !== "dead") this.$searchBarInput.dataset.request = "dead"
     }
 
     applyFilter(request, type, filter) {
+        /** send search request, display result recipes and filters, display labels
+         *
+         * @param {string} request
+         * @param {string} filter
+         * @param {string} type
+         *
+         */
 
-        // filter recipes
+        // filter displayed recipes
         const filteredRecipes = Search.searchByFilter(request, filter, this._displayedRecipes)
-
         // update content
         new DisplayContent(this._allRecipes, filteredRecipes).updateContent()
-
-        // remove labels that are in filters
-
         // display label
         this.displayLabels(this._allRecipes, request, type, filter)
     }
 
     //  --- add labels ---
+
     displayLabels(allRecipes, request, type, filter) {
+        /** display labels from search
+         *
+         * @param {Array} allRecipes
+         * @param {string} request
+         * @param {string} type
+         * @param {string} filter
+         *
+         */
         // display label in filters
         try {
             const destination = "filters"

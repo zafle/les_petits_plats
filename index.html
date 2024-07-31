@@ -12,8 +12,8 @@
 </head>
 <body>
     <div class="container-fluid mw-1440 p-0">
-        <header class="main-header position-relative h-667 overflow-hidden">
-            <img class="object-fit-cover object-position-right obj" src="assets/images/header-image.jpg" alt="assiette et baguettes chinoises">
+        <header class="main-header position-relative h-667">
+            <img class="object-fit-cover object-position-right h-667 img-fluid" src="assets/images/header-image.jpg" alt="assiette et baguettes chinoises">
             <div class="card-img-overlay px-70 py-50">
                 <img class="main-header__logo w-207" src="assets/images/logo.png" alt="Les petits plats">
                 <h1 class="main-header__title font-title fs-6 mw-700 mx-auto mt-170 text-primary text-uppercase text-center lh-base">
@@ -33,7 +33,7 @@
                 <section class="filters d-flex justify-content-between flex-wrap gap-20 px-sm-4 h-56 mb-sm-20 mb-50 overflow-visible z-1 position-relative">
 
                     <div class="order-sm-1">
-                        <h2 class="filters__main-title font-title m-0 pt-md-10 pt-1 fs-5"><span id="recipes_amount"></span> recettes</h2>
+                        <h2 class="filters__main-title font-title m-0 pt-md-10 pt-1 fs-5"><span id="recipes_amount"></span> <span id="recipes_amount_text">recettes</span></h2>
                     </div>
 
                     <div class="filters__list d-flex justify-content-start gap-lg-65 gap-10 z-1 pe-none">
@@ -139,10 +139,11 @@
      <script src="scripts/functionalities/selectFilter.js"></script>
      <script src="scripts/functionalities/searchLabels.js"></script>
     <!-- Utils -->
-    <script src="scripts/utils/displayContent.js"></script>
     <script src="scripts/utils/customString.js"></script>
     <script src="scripts/utils/getLabels.js"></script>
     <script src="scripts/utils/search.js"></script>
+    <!-- Display -->
+    <script src="scripts/display/displayContent.js"></script>
     <!-- Pages -->
     <script src="scripts/pages/index.js"></script>
 </body>

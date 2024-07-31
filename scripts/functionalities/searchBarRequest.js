@@ -5,10 +5,10 @@ class SearchBarRequest {
      *
      */
     constructor(recipes) {
+
         this._allRecipes = recipes
 
         // search bar
-        this.$button = document.querySelector(".main-header__search-button")
         this.$searchInput = document.querySelector(".main-header__search-input")
         this.$closeButton = document.querySelector(".main-header__close-search")
 
@@ -25,8 +25,14 @@ class SearchBarRequest {
         this.$filtersLabelsLists = document.querySelectorAll(".filters-labels__list")
     }
 
-    // --- search bar events ---
+    // --- search requests ---
+
     customRequest(request) {
+        /** search bar request from user input entry
+         *
+         * @param {String} request
+         *
+         */
 
         if (request.length > 2) {
             this.sendRequest(request, null)
@@ -41,8 +47,12 @@ class SearchBarRequest {
     }
 
     sendRequest(request, filter) {
-
-        // this.$closeButton.classList.remove("d-none")
+        /** send search bar request (from custom user's input or from autocomplete tag selection)
+         *
+         * @param {String} request
+         * @param {String} filter type of filter
+         *
+         */
 
         // remove labels if some labels are displayed
         this.checkIfNewSearch()
@@ -50,7 +60,7 @@ class SearchBarRequest {
         const filteredRecipes = this.searchFunction(request, filter)
 
         // if request found no recipes, display no recipe message
-        if (filteredRecipes.length === 0) {
+        if (!filteredRecipes.length) {
             this.displayNoRequestFound(request)
 
         } else {
@@ -60,31 +70,34 @@ class SearchBarRequest {
     }
 
     searchFunction(request, filter) {
-        if (filter === null) {
-            const filteredRecipes = Search.searchByRequest(request, this._allRecipes)
-            return filteredRecipes
-        } else {
-            const filteredRecipes = Search.searchByFilter(request, filter, this._allRecipes)
-            return filteredRecipes
-        }
+        /** determine wich kind of search to execute
+         *
+         * @param {String} request
+         * @param {String} filter type of filter
+         *
+         */
+
+        const filteredRecipes = (filter === null) ? Search.searchByRequest(request, this._allRecipes) : Search.searchByFilter(request, filter, this._allRecipes)
+        return filteredRecipes
     }
 
     // --- if new search ---
-
     checkIfNewSearch() {
         if (this.$searchInput.dataset.request === "dead") {
-            this.startNewSearch()
+            this.clearLabels()
+            this.$searchInput.dataset.request = "alive"
         }
-    }
-
-    startNewSearch() {
-        this.clearLabels()
-        this.$searchInput.dataset.request = "alive"
     }
 
     // --- display content ---
 
     updateContent(recipes) {
+        /** update content
+         *
+         * @param {Array} recipes
+         *
+         */
+
         // display recipes and filters
         new DisplayContent(this._allRecipes, recipes).updateContent()
     }
@@ -92,6 +105,12 @@ class SearchBarRequest {
     // --- update on request found ---
 
     displayNewContent(filteredRecipes, request) {
+        /** update content
+         *
+         * @param {Array} filteredRecipes
+         * @param {String} request
+         *
+         */
         this.clearNoRequestFound()
         this.updateContent(filteredRecipes)
         this.displayLabel(request)
@@ -117,6 +136,12 @@ class SearchBarRequest {
     // --- Request not found ---
 
     displayNoRequestFound(request) {
+        /** display no recipes found message
+         *
+         * @param {String} request
+         *
+         */
+
         // Remove recipes and tags
         this.$recipesCardsWrapper.innerHTML = ''
         this.$filtersTags.forEach(filter => filter.innerHTML = "")
@@ -134,9 +159,14 @@ class SearchBarRequest {
     // --- Labels ---
 
     displayLabel(request) {
+        /** display request label
+         *
+         * @param {String} request
+         *
+         */
+
         try {
-            const destination = "labels"
-            new Label(this._allRecipes, request, "search_bar", null, destination).displayLabel()
+            new Label(this._allRecipes, request, "search_bar", null, "labels").displayLabel()
 
         } catch (error) {
             console.error(`Unknown destination`, error)

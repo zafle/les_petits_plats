@@ -1,11 +1,11 @@
 class LabelFactory {
     /** Factory to instantiate new Label Object
-     * instantiate SearchLabel Object if label is for labels section
-     * instantiate FilterLabel Object if label is for filters dropdown
+     * instantiate SearchLabel Object (extends Label Object) if label is for labels section
+     * instantiate FilterLabel Object (extends Label Object) if label is for filters dropdown
      *
      * @param {String} name is request or filter tag name to display as label's text and data-name
-     * @param {String} type for data-type (search_bar or filter)
-     * @param {String} filter for data-filter (name of filter - ingredient... - or null)
+     * @param {String} type for data-type (search_bar or filter) according to label origin
+     * @param {String} filter for data-filter (name of filter - ingredient... - or null if origin is search bar)
      * @param {String} destination to determine if label is to be displayed in label section or in filters dropdown
      *
      */

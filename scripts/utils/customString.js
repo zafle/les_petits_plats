@@ -1,4 +1,7 @@
 class CustomString {
+    /** functions to modify strings with regular expressions
+     *
+     */
 
     static simplify(string) {
         string = this.removeAccent(string)

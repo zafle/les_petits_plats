@@ -3,6 +3,7 @@ class RecipeData {
      *
      * @param {Object} recipe RecipeData
      */
+
     constructor(recipe) {
         this._recipe = recipe
         this._id = recipe.id
@@ -37,10 +38,12 @@ class RecipeData {
     }
 
     get ingredients() {
+        // create array of ingredientsData objects
         return this._ingredients.map(ingredient => new IngredientData(ingredient))
     }
 
     get ingredientsTags() {
+        // create array of ingredients tags
         return this._ingredients.map(element => element.ingredient)
     }
 

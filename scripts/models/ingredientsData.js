@@ -1,8 +1,11 @@
 class IngredientData {
     /** Constructor pattern for ingredients datas from one recipe
      *
+     * @param {Object} ingredientData from recipes datas
      */
+
     constructor(ingredientData) {
+
         this._name = ingredientData.ingredient
         this._quantity = ingredientData.quantity ? ingredientData.quantity : null
         this._unit = ingredientData.unit ? ingredientData.unit : null

@@ -1,5 +1,5 @@
 class Filters {
-    /** Manage filters dropdowns
+    /** Manage filters component and events listeners
      *
      *
      */
@@ -12,15 +12,14 @@ class Filters {
         this.$filtersDropdown = document.querySelectorAll(".filters__dropdown")
         this.$filters = document.querySelectorAll(".filters__item")
 
-        // Opened filter's Tags
+        // Displayed filter's Tags
         this.$tagsArray = []
 
         // search bar
         this.$searchBarInput = document.querySelector(".main-header__search-input")
-
     }
 
-    // --- open filter events ---
+    // --- open / close filter events ---
 
     // open /close filter on cick
     onClickFilter() {
@@ -33,34 +32,36 @@ class Filters {
         })
     }
 
-    // --- open filter events / utils functions ---
+    // open filter events / utils functions
 
     toggleFilter(filter) {
+        /** open or close filter dropdown
+         *
+         * @param {string} filter data-filter value
+         *
+         */
         const dropdown = document.querySelector(`.filters__dropdown[data-filter="${filter}"]`)
         const button = document.querySelector(`.filters__header[data-filter="${filter}"]`)
         dropdown.classList.toggle("mh-0")
         dropdown.classList.toggle("mh-100")
         dropdown.classList.toggle("pe-auto")
+        // transform button's image
         button.firstElementChild.classList.toggle("transform-scale-vmirror")
     }
 
     closeOtherFilters(openedFilter) {
+        /** close other filters dropdown
+         *
+         *@param {string} openedFilter data-filter value
+         *
+         */
         this.$filtersDropdown.forEach(dropdown => {
             const filterName = dropdown.dataset.filter
-            if ((filterName !== openedFilter) && (dropdown.classList.contains("mh-100"))) {
-                this.toggleFilter(filterName)
-            }
+            if ( (filterName !== openedFilter) && (dropdown.classList.contains("mh-100")) ) this.toggleFilter(filterName)
         })
     }
 
-    onClickCloseSearchButton() {
-        this.$filtersCloseSearchButtons.forEach(button => {
-            button.addEventListener("click", (e) => {
-                const closeSearchButton = e.target
-                this.closeSearch(closeSearchButton)
-            })
-        })
-    }
+    // --- search bar events ---
 
     onClickSearchBarInput() {
         this.$searchBarInput.addEventListener("click", () => {
@@ -68,7 +69,18 @@ class Filters {
         })
     }
 
-    // --- search filter tag ---
+    // --- search filter events ---
+
+    // close search
+    onClickCloseSearchButton() {
+        this.$filtersCloseSearchButtons.forEach(button => {
+            button.addEventListener("click", (e) => {
+                this.closeSearch(e.target)
+            })
+        })
+    }
+
+    // search filter tag
     onSearchTagRequest() {
 
         this.$filtersInputs.forEach(input => {
@@ -77,18 +89,26 @@ class Filters {
 
                 // secure request
                 const request = CustomString.secure(e.target.value)
-                // get type of tag's array
+                // get type of filters array
                 const tagType = e.target.name
 
+                // display close button
                 this.displaySearchButton(input)
+                // send request
                 this.searchTag(request, tagType)
-
             })
         })
     }
 
     searchTag(request, tagType) {
-        // get HTML elements tags array from type
+        /** send request for tag filter and display result
+         *
+         *@param {string} request
+         *@param {string} tagType input name attribut === type of filter
+         *
+         */
+
+        // get filter tags HTML elements from type and create tags array
         this.createTagsArray(tagType)
 
         if (request.length) {
@@ -101,7 +121,12 @@ class Filters {
     }
 
     createTagsArray(tagType) {
-        // get HTML elements tags array from type
+        /** get filter tags HTML elements from type and create tags array
+         *
+         *@param {string} tagType input name attribut === type of filter
+        *
+        */
+
         this.$tagsArray = document.querySelectorAll(`.filter__tag[data-filter="${tagType}"]`)
     }
 
@@ -121,8 +146,6 @@ class Filters {
         this.displayAllTags()
     }
 
-
-
     displaySearchButton(input) {
         input.nextElementSibling.classList.remove("d-none")
     }
@@ -133,6 +156,4 @@ class Filters {
         this.onClickCloseSearchButton()
         this.onClickSearchBarInput()
     }
-
-
 }

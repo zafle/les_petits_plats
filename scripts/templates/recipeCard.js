@@ -5,6 +5,7 @@ class RecipeCard {
      *
      */
     constructor(recipe) {
+
         this._recipe = recipe
         this._ingredients = recipe.ingredients
     }

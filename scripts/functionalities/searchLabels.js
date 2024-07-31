@@ -9,27 +9,10 @@ class SearchLabels {
     }
 
     searchAllLabels() {
-
-        let filteredRecipes = []
-
+        // get all labels array
         const allLabels = GetLabels.getLabelsArray()
-
-        if (allLabels !== null) {
-            filteredRecipes = this.sendRequest(allLabels)
-
-        } else {
-            filteredRecipes = this._allRecipes
-        }
-
-        this.displayRecipes(filteredRecipes)
-    }
-
-    sendRequest(allLabels) {
         // new search from labels list
-        return Search.searchByLabel(allLabels, this._allRecipes)
-    }
-
-    displayRecipes(filteredRecipes) {
+        const filteredRecipes = (allLabels !== null) ? Search.searchByLabel(allLabels, this._allRecipes) : this._allRecipes
         // update content
         new DisplayContent(this._allRecipes, filteredRecipes).updateContent()
     }
