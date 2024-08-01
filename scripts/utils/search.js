@@ -15,9 +15,7 @@ class Search {
         request = CustomString.simplify(request)
         property = CustomString.simplify(property)
 
-        // test request against property
-        const pattern = new RegExp(`${request}`, "i")
-        return pattern.test(property)
+        return property.toLowerCase().includes(request.toLowerCase())
     }
 
     static searchRequest(request, property) {
@@ -37,12 +35,11 @@ class Search {
         // if the property to check request against is an array
         } else if (typeof property === "object" ) {
 
-            for (let element of property) {
-                requestFound = this.testRequest(request, element)
-                if (requestFound === true) {
-                    break
+            property.forEach(element => {
+                if (this.testRequest(request, element)) {
+                    requestFound = true
                 }
-            }
+            })
         }
 
         return requestFound
@@ -56,23 +53,9 @@ class Search {
          * @param {Array} recipes
          */
 
-        const filteredRecipes = []
-
-        for (let recipe of recipes) {
-
-            // search request in title
-            if ( this.searchRequest(request, recipe.name) ) {
-                filteredRecipes.push(recipe)
-
-            // search request in ingredients
-            } else if ( this.searchRequest(request, recipe.ingredientsTags) ) {
-                filteredRecipes.push(recipe)
-
-            // search request in description
-            } else if ( this.searchRequest(request, recipe.description) ) {
-                filteredRecipes.push(recipe)
-            }
-        }
+        const filteredRecipes = recipes.filter( recipe => {
+            return this.searchRequest(request, recipe.name) || this.searchRequest(request, recipe.ingredientsTags) || this.searchRequest(request, recipe.description)
+        })
 
         return filteredRecipes
     }
@@ -86,15 +69,14 @@ class Search {
          *
          */
 
-        for (let item of tagsArray) {
+        tagsArray.forEach(element => {
 
-            item.classList.remove("d-none")
+            element.classList.remove("d-none")
 
-            let tag = item.innerText
-            if ( !this.searchRequest(request, tag) ) {
-                item.classList.add("d-none")
+            if ( !this.searchRequest(request, element.innerText) ) {
+                element.classList.add("d-none")
             }
-        }
+        })
     }
 
     static searchByFilter(request, filter, recipes) {
@@ -106,17 +88,10 @@ class Search {
          *
          */
 
-        const filteredRecipes = []
+        const filteredRecipes = recipes.filter(recipe => {
+            return this.searchRequest(request, recipe[`${filter}Tags`])
+        })
 
-        // loop into RecipeDatas
-        for (let recipe of recipes) {
-
-            const property = recipe[`${filter}Tags`]
-
-            if ( this.searchRequest(request, property) ) {
-                filteredRecipes.push(recipe)
-            }
-        }
         return filteredRecipes
     }
 
@@ -135,8 +110,7 @@ class Search {
         let recipesToFilter = recipes
 
         // loop into labels array
-        for (let label of labelsArray) {
-
+        labelsArray.forEach(label => {
             const filter = label["filter"]
             const request = label["request"]
 
@@ -151,7 +125,7 @@ class Search {
 
             // store result from the loop into variable for next iteration
             recipesToFilter = filteredRecipes
-        }
+        })
 
         return filteredRecipes
     }

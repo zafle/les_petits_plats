@@ -1,6 +1,6 @@
 /* global TagsDatas */
 class AutocompleteDatas {
-    /** Select Filter functionalities
+    /** Create the tags array for autocomplete functionality
      *
      * @param {Array} recipes RecipeData Objects
      *
@@ -22,16 +22,18 @@ class AutocompleteDatas {
 
 
         const tagsDatas = new TagsDatas(this._recipes)
-        tagsDatas.createTagsArrays()
+        // tagsDatas.createTagsArrays()
 
         let allTags = []
 
         this._filters.forEach( filter => {
-            this[`_${filter}Tags`] = this.createTagArray(tagsDatas[`_${filter}Tags`], filter)
+            this[`_${filter}Tags`] = this.createTagArray(tagsDatas[`${filter}Tags`], filter)
             allTags.push(this[`_${filter}Tags`])
         })
 
         this._autocompleteTags = allTags.flat()
+        console.log("this._autocompleteTags")
+        console.log(this._autocompleteTags)
         return this._autocompleteTags
     }
 

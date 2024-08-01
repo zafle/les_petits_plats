@@ -31,7 +31,7 @@ class DisplayContent {
     // --- create arrays of tags from RecipeData objects ---
     createTagsDatas() {
         this._tagsDatas = new TagsDatas(this._filteredRecipes)
-        this._tagsDatas.createTagsArrays()
+        // this._tagsDatas.createTagsArrays()
     }
 
     // --- display Filters tags ---
