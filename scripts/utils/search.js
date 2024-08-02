@@ -16,8 +16,7 @@ class Search {
         property = CustomString.simplify(property)
 
         // test request against property
-        const pattern = new RegExp(`${request}`, "i")
-        return pattern.test(property)
+        return property.toLowerCase().includes(request.toLowerCase())
     }
 
     static searchRequest(request, property) {
@@ -60,16 +59,11 @@ class Search {
 
         for (let recipe of recipes) {
 
-            // search request in title
-            if ( this.searchRequest(request, recipe.name) ) {
-                filteredRecipes.push(recipe)
-
-            // search request in ingredients
-            } else if ( this.searchRequest(request, recipe.ingredientsTags) ) {
-                filteredRecipes.push(recipe)
-
-            // search request in description
-            } else if ( this.searchRequest(request, recipe.description) ) {
+            if (
+                this.searchRequest(request, recipe.name) ||
+                this.searchRequest(request, recipe.ingredientsTags) ||
+                this.searchRequest(request, recipe.description)
+            ) {
                 filteredRecipes.push(recipe)
             }
         }
