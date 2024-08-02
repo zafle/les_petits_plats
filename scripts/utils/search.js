@@ -35,11 +35,13 @@ class Search {
         // if the property to check request against is an array
         } else if (typeof property === "object" ) {
 
-            property.forEach(element => {
-                if (this.testRequest(request, element)) {
-                    requestFound = true
-                }
-            })
+            const filteredElements = property.filter(element => {
+                return this.testRequest(request, element)
+            } )
+
+            if (filteredElements.length) {
+                requestFound = true
+            }
         }
 
         return requestFound
