@@ -1,6 +1,6 @@
 /* global TagsDatas */
 class AutocompleteDatas {
-    /** Select Filter functionalities
+    /** Create the tags array for autocomplete functionality
      *
      * @param {Array} recipes RecipeData Objects
      *
