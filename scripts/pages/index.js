@@ -2,8 +2,12 @@
 class RecipesPage {
     /** Display homepage and run functionnalities
      *
+     * @param {Object} recipes recipes datas
+     *
      */
-    constructor() {
+
+    constructor(recipes) {
+        this._recipes = recipes
         this._recipesDatas = []
     }
 
@@ -37,7 +41,7 @@ class RecipesPage {
 }
 
 function init() {
-    new RecipesPage().run()
+    new RecipesPage(recipes).run()
 }
 
 init()
