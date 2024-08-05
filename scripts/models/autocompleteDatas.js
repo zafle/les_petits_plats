@@ -38,7 +38,7 @@ class AutocompleteDatas {
     }
 
     createTagArray(array, filter) {
-        /** map the array of tags to to construs a key/value array : filter = filter's name and name = tag's name
+        /** map the array of tags to construct a key/value array : filter = filter's name and name = tag's name
          *
          * @param {Array} array array of tags
          * @param {String} filter type of filter

@@ -12,6 +12,7 @@ class Search {
          */
 
         // remove accents and brackets from strings
+        // (removing brackets will be usefull when request is from a label html tag data value)
         request = CustomString.simplify(request)
         property = CustomString.simplify(property)
 

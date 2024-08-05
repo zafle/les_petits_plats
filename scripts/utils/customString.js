@@ -24,7 +24,7 @@ class CustomString {
         // replace multiple spaces, tab, new lines... with single space
         string = string.replace(/\s\s+/g, " ")
         // remove first and last space
-        string = string.replace(/^\s|\s$/g, "")
+        string = string.trim()
         return string
     }
 
