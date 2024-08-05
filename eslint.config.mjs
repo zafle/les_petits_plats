@@ -5,6 +5,13 @@ export default [
     {languageOptions: { globals: globals.browser }},
     pluginJs.configs.recommended,
     {
+        files: ["data/recipes.js"],
+        rules: {
+            "no-unused-vars": "off"
+        }
+    },
+    {
+        ignores: ["data/recipes.js"],
         rules: {
             "no-unused-vars": "off",
             "no-undef": "error",

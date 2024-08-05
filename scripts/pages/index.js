@@ -2,14 +2,17 @@
 class RecipesPage {
     /** Display homepage and run functionnalities
      *
+     * @param {Object} recipes recipes datas
+     *
      */
-    constructor() {
+    constructor(recipes) {
+        this._recipes = recipes
         this._recipesDatas = []
     }
 
     // Map recipes datas
     mapRecipes() {
-        this._recipesDatas = recipes.map(recipe => new RecipeData(recipe))
+        this._recipesDatas = this._recipes.map(recipe => new RecipeData(recipe))
     }
 
     // Display content, search and select filter functionalities
@@ -37,7 +40,7 @@ class RecipesPage {
 }
 
 function init() {
-    new RecipesPage().run()
+    new RecipesPage(recipes).run()
 }
 
 init()
