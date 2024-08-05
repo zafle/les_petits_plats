@@ -1,8 +1,10 @@
 class TagsDatas {
-    /** Constructor pattern for tags'datas from all recipes
+    /** Constructor patternfor tags'datas from all recipes
      *
      * @param {Array} recipes RecipeData Objects
+     *
      */
+
     constructor(recipes) {
         this._recipes = recipes
 
@@ -12,55 +14,44 @@ class TagsDatas {
     }
 
     get ingredientsTags() {
+        this._ingredientsTags = this.createArray("ingredients")
         return this._ingredientsTags
     }
 
     get appliancesTags() {
+        this._appliancesTags = this.createArray("appliances")
         return this._appliancesTags
     }
 
     get ustensilsTags() {
+        this._ustensilsTags = this.createArray("ustensils")
         return this._ustensilsTags
     }
 
-    // build an array of tags for each filter
-    createTagsArrays() {
-
-        this._recipes.forEach(recipe => {
-
-            recipe.ingredientsTags.forEach(ingredient => {
-                this.checkTagExists(ingredient, this._ingredientsTags)
-            })
-
-            this.checkTagExists(recipe.appliancesTags, this._appliancesTags)
-
-            recipe.ustensilsTags.forEach(ustensil => {
-                this.checkTagExists(ustensil, this._ustensilsTags)
-            })
-        })
-    }
-
-    checkTagExists(tag, array) {
-        /** return only uniques tags
+    createArray(filter) {
+        /** create an array of uniques tags from filter type
          *
-         * @param {string} tag recipe property to test
-         * @param {Array} array array of tags to create
+         * @param {String} filter type of filter
+         *
          */
 
-        let tagExists = false
+        // map recipes with filter tags and then flat arrays
+        const tags = this._recipes.flatMap(recipe => recipe[`${filter}Tags`])
 
-        // for each first iteration of the createTagsArrays() loop, the array is empty => array.length === 0
-        if (array.length) {
-            // for each item of the array, check if the tag already exists
-            for (let item of array) {
-                if (item.toLowerCase() === tag.toLowerCase()) {
-                    tagExists = true
-                    break
-                }
-            }
-        }
-        if (tagExists === false) {
-            array.push(tag)
-        }
+        // transform tag to lower case and capitalize first letter to allow finding duplicates
+        const capitalizedTagsArray = tags.map(tag => this.capitalizeFirstLetter(tag))
+
+        // return new array with uniques values
+        return Array.from(new Set(capitalizedTagsArray))
+    }
+
+    capitalizeFirstLetter(string) {
+        /** transform tag to lower case and capitalize first letter
+         *
+         * @param {String} string tag's name
+         *
+         */
+
+        return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1)
     }
 }
