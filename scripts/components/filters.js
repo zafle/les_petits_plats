@@ -66,12 +66,23 @@ class Filters {
         })
     }
 
-    // --- search bar related events ---
+    // close filter on click out filter
+    onClickOut() {
+        document.addEventListener("click", (e) => {
 
-    // close filters on click search bar input
-    onClickSearchBarInput() {
-        this.$searchBarInput.addEventListener("click", () => {
-            this.closeOtherFilters(null)
+            let isfilter = false
+
+            if (
+                e.target.hasAttribute("data-filter") ||
+                e.target.parentNode.hasAttribute("data-filter") ||
+                e.target.parentNode.classList.contains("filters__search")
+            ) {
+                isfilter = true
+            }
+
+            if (isfilter === false) {
+                this.closeOtherFilters(null)
+            }
         })
     }
 
@@ -169,7 +180,7 @@ class Filters {
         this.onClickFilter()
         this.onSearchTagRequest()
         this.onClickCloseSearchButton()
-        this.onClickSearchBarInput()
         this.onRemoveLabel()
+        this.onClickOut()
     }
 }
