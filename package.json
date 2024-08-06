@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "purgecss --css assets/css/style.css --content index.html scripts/**/*.js --output build/"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@eslint/js": "^9.8.0",
     "eslint": "^9.8.0",
-    "globals": "^15.8.0"
+    "globals": "^15.8.0",
+    "purgecss": "^6.0.0"
   }
 }
