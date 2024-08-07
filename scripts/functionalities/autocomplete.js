@@ -117,6 +117,8 @@ class Autocomplete {
                 if (this._currentFocus > -1) {
                     // simulate a click on the "active" item
                     if (list) list[this._currentFocus].click()
+                } else {
+                    this.closeAllLists()
                 }
             }
         })
