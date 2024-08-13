@@ -46,6 +46,9 @@ class Autocomplete {
             // remove any already opened lists of autocompleted tags
             this.closeAllLists()
 
+            // reset current focus
+            this._currentFocus = -1
+
             if (!request) return false
 
             // create a list of autocomplete tags
