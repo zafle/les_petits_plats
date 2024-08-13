@@ -46,6 +46,9 @@ class Autocomplete {
             // remove any already opened lists of autocompleted tags
             this.closeAllLists()
 
+            // reset current focus
+            this._currentFocus = -1
+
             if (!request) return false
 
             // create a list of autocomplete tags
@@ -117,6 +120,7 @@ class Autocomplete {
                 if (this._currentFocus > -1) {
                     // simulate a click on the "active" item
                     if (list) list[this._currentFocus].click()
+
                 } else {
                     this.closeAllLists()
                 }
